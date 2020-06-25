@@ -1,0 +1,831 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 card">
+            <div class="mt-2">
+                <form #myForm="ngForm" (ngSubmit)="onSubmitForm()">
+                    <div class="panel panel-success bg-light mt-2" *ngIf="currentPanel == 'start'">
+                        <div class="panel-heading">
+                            <h5 class="panel-title text-uppercase py-1">Employment Application Form</h5>
+                        </div>
+
+                        <div class="panel-body text-danger">
+                            <small>Fields marked with * are required</small>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <td><label>Post Applied For</label></td>
+                                    <td><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel"> </td>
+                                    <td>Company</td>
+                                    <td><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel"> </td>
+                                    <td>Project Site</td>
+                                    <td><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel"> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12">
+                                        <p class="lead">How did you learn about this position?</p>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio1" value="Job portals">
+                                            <label class="form-check-label" for="inlineRadio1">Job portals</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio2" value="Newspaper advertisement">
+                                            <label class="form-check-label" for="inlineRadio2">Newspaper advertisement</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio3" value="Recruitment agency">
+                                            <label class="form-check-label" for="inlineRadio3">Recruitment agency</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio4" value="Referral">
+                                            <label class="form-check-label" for="inlineRadio4">Referral</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio5" value="Company Website">
+                                            <label class="form-check-label" for="inlineRadio5">Company Website</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio6" value="Others">
+                                            <label class="form-check-label" for="inlineRadio6">Others</label>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="12">
+                                        <div class="lead">Are you referral by any employee working in the company?
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="referral" [(ngModel)]="candidate.referral" required #referral="ngModel" id="inlineRadio7" value="true">
+                                                <label class="form-check-label" for="inlineRadio7">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="radio" name="referral" [(ngModel)]="candidate.referral" required #referral="ngModel" id="inlineRadio8" value="false">
+                                                <label class="form-check-label" for="inlineRadio8">No</label>
+                                            </div>
+                                            <div id="referals" class="row" *ngIf="referral.value == 'true'">
+                                                <div class=" col-md-4 ">Name : <input type="text " class="form-control " name="referralName " [(ngModel)]="referralEmployee.name " required #refName="ngModel"></div>
+                                                <div class="col-md-4 "> Department :<input type="text " class="form-control " name="referralDepartment " [(ngModel)]="referralEmployee.department " required #refDepartment="ngModel"></div>
+                                                <div class="col-md-4 "> Relationship : <input type="text " class="form-control " name="referralRelationship " [(ngModel)]="referralEmployee.relationship " required #refRelationship="ngModel"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='pp' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Personal Particulars</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <td>Full Name (as per NRIC / Passport)</td>
+                                    <td colspan="2 "><input type="text " name="fullName " [(ngModel)]="personalDetails.fullName" required #pdName="ngModel" class="form-control "></td>
+                                    <td rowspan="5 " style="width: 210px; ">Recent Passport Sized Photo
+                                        <input type="file " name=" " id="imgInp " class="d-none " />
+                                        <img src="image-picker.png " alt="Photo " class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>NRIC / Passport No.
+                                        <input type="text" class="form-control " name="nric" [(ngModel)]="personalDetails.nricOrPassportNumber" required #pdNric="ngModel">
+                                    </td>
+                                    <td>
+                                        <p class="lead ">Gender
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="gender" [(ngModel)]="personalDetails.gender" required id="male" value="male">
+                                                <label class="form-check-label " for="male ">Male</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="gender" [(ngModel)]="personalDetails.gender" required id="female" value="female">
+                                                <label class="form-check-label " for="female">Female</label>
+                                            </div>
+                                    </td>
+                                    <td>
+                                        <p class="lead ">Marital Status
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required id="single " value="single">
+                                                <label class="form-check-label " for="single ">Single</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required id="married" value="married">
+                                                <label class="form-check-label " for="married ">Married</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required value="divorced">
+                                                <label class="form-check-label " for="divorced ">Divorced</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required value="widowed">
+                                                <label class="form-check-label " for="widowed ">Widowed</label>
+                                            </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Citizenship <input type="text " name="citizenship" [(ngModel)]="personalDetails.citizenship" required class="form-control " id=" "> </td>
+                                    <td>
+                                        <p class="lead ">Singapore PR
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="pr" [(ngModel)]="personalDetails.pr" required id="pryes " value="true">
+                                                <label class="form-check-label " for="pryes ">Yes</label>
+                                            </div>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="pr" [(ngModel)]="personalDetails.pr" required id="prno " value="false">
+                                                <label class="form-check-label " for="prno ">No</label>
+                                            </div>
+                                    </td>
+                                    <td>dateattained SPR Status <input type="date" name="sprDate" [(ngModel)]="personalDetails.sprDate" required id="spr " class="form-control "></td>
+                                </tr>
+                                <tr>
+                                    <td>Place of Birth
+                                        <input type="date" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " class="form-control ">
+                                    </td>
+                                    <td>dateof Birth
+                                        <input type="date" name="dateOfBirth" [(ngModel)]="personalDetails.dateOfBirth" required id="dob " class="form-control ">
+                                    </td>
+                                    <td>Age
+                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" required id="age " class="form-control ">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Race
+                                        <input type="text " name="race" [(ngModel)]="personalDetails.race" required id="race " class="form-control ">
+                                    </td>
+                                    <td>Religion
+                                        <input type="text " name="religion" [(ngModel)]="personalDetails.religion" required id="religion " class="form-control ">
+                                    </td>
+                                    <td>Email Address
+                                        <input type="text " name="email" [(ngModel)]="personalDetails.email" required id="mail " class="form-control ">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2 ">NS RANK
+                                        <input type="text " name="nsRank" [(ngModel)]="personalDetails.nsRank" required id="nsrank " class="form-control ">
+                                    </td>
+                                    <td colspan="2 ">Medical Condition
+                                        <input type="text " name="medicalCondition" [(ngModel)]="personalDetails.medicalCondition" required id="medical " class="form-control ">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td colspan="4 ">Current Address
+                                        <input type="text " name="currentAddress" [(ngModel)]="personalDetails.currentAddress" required id="address1 " class="form-control ">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4 ">Overseas Address
+                                        <input type="text " name="overseasAddress" [(ngModel)]="personalDetails.overseasAddress" required id="address2 " class="form-control ">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contact No:</td>
+                                    <td>Mobile
+                                        <input type="number " name="mobileContact" [(ngModel)]="personalDetails.mobileContact" required id="address1 " class="form-control ">
+                                    </td>
+                                    <td>Home
+                                        <input type="number " name="homeContact" [(ngModel)]="personalDetails.homeContact" required id="address1 " class="form-control ">
+                                    </td>
+                                    <td>Office
+                                        <input type="number " name="officeContact" [(ngModel)]="personalDetails.officeContact" required id="address1 " class="form-control ">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='bd' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Bank Details</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>Account No.</th>
+                                    <th>Bank</th>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text " name="accountNumber" [(ngModel)]="candidate.accountNumber" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="bank" [(ngModel)]="candidate.bank" required class="form-control "></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='fp' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Family Particulars</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="familyTable ">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Relationship</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Occupation</th>
+                                    <td>Delete</td>
+                                </tr>
+
+                                <tr *ngFor="let fd of familyDetails let i = index">
+                                    <input type="hidden" name="id" [(ngModel)]="familyDetails[i].id" value="fd.id" />
+                                    <td><input type="text " name="name({{i}})" [(ngModel)]="familyDetails[i].name" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="relationship{{i}})" [(ngModel)]="familyDetails[i].relationship" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="age({{i}})" [(ngModel)]="familyDetails[i].age" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="gender({{i}})" [(ngModel)]="familyDetails[i].gender" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="occupation({{i}})" [(ngModel)]="familyDetails[i].occupation" required id=" " class="form-control "></td>
+                                    <td><button type="button" class="close cancel" (click)="removeFamilyMember(i,fd.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addFamilyMember()">Add Member</button>
+                        <!--  <p><i>In case of any emergency, kindly contact:</i></p> -->
+
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='eb' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Educational Background</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="eduTable ">
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Name of Institution</th>
+                                    <th>Qualification Obtained</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let edu of educations let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="educations[i].id" value="edu.id" />
+                                    <td><input type="date" name="from({{i}})" [(ngModel)]="educations[i].from" required id=" " class="form-control "></td>
+                                    <td><input type="date" name="to({{i}})" [(ngModel)]="educations[i].to" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="institution({{i}})" [(ngModel)]="educations[i].institution" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="qualification({{i}})" [(ngModel)]="educations[i].qualification" required id=" " class="form-control "></td>
+                                    <td><button type="button" class="close cancel" (click)="removeEducation(i,edu.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addEducation()">Add More</button>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='eh' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Employment History (state the most recent first)</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="historyTable ">
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Name of Employer</th>
+                                    <th>Last Drawn Basic Salary/</th>
+                                    <th>Job Title</th>
+                                    <th rowspan="2 ">Reason for Leaving</th>
+                                </tr>
+                                <tr>
+                                    <th>(mm/yy)</th>
+                                    <th>(mm/yy)</th>
+                                    <th>Address of Employer</th>
+                                    <th>Allowance / Bonus</th>
+                                    <th>Brief Job Description</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let eh of employmentHistories let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="employmentHistories[i].id" value="eh.id" />
+                                    <td><input type="date" name="from({{i}})" [(ngModel)]="employmentHistories[i].from" required id=" " class="form-control "></td>
+                                    <td><input type="date" name="to({{i}})" [(ngModel)]="employmentHistories[i].to" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="employerInfo({{i}}) " [(ngModel)]="employmentHistories[i].employerInfo" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="salaryInfo({{i}}) " [(ngModel)]="employmentHistories[i].salaryInfo" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="jobDescription({{i}}) " [(ngModel)]="employmentHistories[i].jobDescription" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="reasonForLeaving({{i}}) " [(ngModel)]="employmentHistories[i].reasonForLeaving" required id=" " class="form-control "></td>
+                                    <td><button type="button" class="close cancel" (click)="removeHistory(i,eh.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addHistory()">Add More</button>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='lp' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Language Proficiency</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="langTable ">
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Spoken</th>
+                                    <th>Reading</th>
+                                    <th>Written</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let lang of languages let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="languages[i].id" value="lang.id" />
+                                    <td><input type="text " name="name({{i}})" [(ngModel)]="languages[i].name" required id=" " class="form-control "></td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="spoken({{i}})" [(ngModel)]="languages[i].spoken" required id="s_excellent({{i}})" value="excellent">
+                                            <label class="form-check-label " for="s_excellent({{i}})">Excellent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="spoken({{i}})" [(ngModel)]="languages[i].spoken" required id="s_fluent({{i}})" value="fluent">
+                                            <label class="form-check-label " for="s_fluent({{i}})"> Fluent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="spoken({{i}})" [(ngModel)]="languages[i].spoken" required id="s_poor({{i}})" value="poor">
+                                            <label class="form-check-label " for="s_poor({{i}}) "> Poor</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="reading({{i}})" [(ngModel)]="languages[i].reading" required id="f_excellent({{i}})" value="excellent">
+                                            <label class="form-check-label " for="f_excellent({{i}})">Excellent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="reading({{i}})" [(ngModel)]="languages[i].reading" required id="f_fluent({{i}})" value="fluent">
+                                            <label class="form-check-label " for="f_fluent({{i}})"> Fluent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="reading({{i}})" [(ngModel)]="languages[i].reading" required id="f_poor({{i}})" value="poor">
+                                            <label class="form-check-label " for="f_poor({{i}})"> Poor</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="writing({{i}})" [(ngModel)]="languages[i].writing" required id="w_excellent({{i}})" value="excellent">
+                                            <label class="form-check-label " for="w_excellent({{i}})">Excellent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="writing({{i}})" [(ngModel)]="languages[i].writing" required id="w_fluent({{i}})" value="fluent">
+                                            <label class="form-check-label " for="w_fluent({{i}})"> Fluent  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input " type="radio" name="writing({{i}})" [(ngModel)]="languages[i].writing" required id="w_poor({{i}})" value="poor">
+                                            <label class="form-check-label " for="w_poor({{i}})"> Poor</label>
+                                        </div>
+                                    </td>
+                                    <td><button type="button" class="close cancel" (click)="removeLanguage(i,lang.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addLanguage()">Add More</button>
+
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='cp' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Computer Proficiency (indicate proficiency with a tick)</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="tableComputerProf ">
+                                <tr>
+                                    <th></th>
+                                    <th> Advance</th>
+                                    <th> Intermediate </th>
+                                    <th> Beginers</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let cp of computerProficiencies let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="computerProficiencies[i].id" value="cp.id" />
+                                    <td><input type="text " name="name({{i}})" [(ngModel)]="computerProficiencies[i].name" required id=" " class="form-control "></td>
+                                    <td>
+                                        <label class="checkbox-inline ">
+                                        <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required value = "advance"> 
+                                    </label>
+                                    </td>
+                                    <td>
+                                        <label class="checkbox-inline ">
+                                            <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required value = "intermediate"> 
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <label class="checkbox-inline ">
+                                            <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required value = "beginner"> 
+                                        </label>
+                                    </td>
+                                    <td><button type="button" class="close cancel" (click)="removeComputerProficiency(i,cp.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+
+                                </tr>
+                            </table>
+                            <br>
+                            <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addComputerProficiency()">Add More</button>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='ms' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Membership of Societies, Clubs and Associations</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="membershipTable ">
+                                <tr>
+                                    <th>From</th>
+                                    <th>To</th>
+                                    <th>Name of Societes /Clubs / Associations</th>
+                                    <th>Position Held</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let m of memberships let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="memberships[i].id" value="m.id" />
+                                    <td><input type="date" name="from({{i}})" [(ngModel)]="memberships[i].from" required id=" " class="form-control "></td>
+                                    <td><input type="date" name="to({{i}})" [(ngModel)]="memberships[i].to" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="name({{i}})" [(ngModel)]="memberships[i].name" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="position({{i}})" [(ngModel)]="memberships[i].position" required id=" " class="form-control "></td>
+                                    <td><button type="button" class="close cancel" (click)="removeMembership(i,m.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addMembership()">Add More</button>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='cr' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Character References</div>
+                        <div class="table-responsive ">
+                            <table class="table " id="refTable ">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Company Name</th>
+                                    <th>Years Known</th>
+                                    <th>Contact No.</th>
+                                    <th>Delete</th>
+                                </tr>
+
+                                <tr *ngFor="let ref of references let i = index">
+                                    <input type="hidden" name="id({{i}})" [(ngModel)]="references[i].id" value="ref.id" />
+                                    <td><input type="text " name="name({{i}})" [(ngModel)]="references[i].name" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="position({{i}})" [(ngModel)]="references[i].position" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="company({{i}})" [(ngModel)]="references[i].company" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="yearsKnown({{i}})" [(ngModel)]="references[i].yearsKnown" required id=" " class="form-control "></td>
+                                    <td><input type="text " name="contact({{i}})" [(ngModel)]="references[i].contact" required id=" " class="form-control "></td>
+                                    <td><button type="button" class="close cancel" (click)="removeReference(i,ref.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                        <br>
+                        <button type="button " class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addReference()">Add More</button>
+                        <p><small><i>(Please provide particulars of two people who are not related to you. The should be referees
+                        who know you well with regard to your character and work performance.)</i></small></p>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='ra' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Remuneration and Availability</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>Expected Salary</th>
+                                    <th>Current Salary</th>
+                                    <th>AWS / Variable Bonus</th>
+                                    <th>Allowance (Please-Specify)</th>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text" class="form-control input-sm" name="expectedSalary" [(ngModel)]="candidate.expectedSalary" required> </td>
+                                    <td><input type="text" class="form-control input-sm" name="currentSalary" [(ngModel)]="candidate.currentSalary" required> </td>
+                                    <td><input type="text" class="form-control input-sm" name="bonus" [(ngModel)]="candidate.bonus" required> </td>
+                                    <td><input type="text" class="form-control input-sm" name="allowance" [(ngModel)]="candidate.allowance" required> </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <br>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>Notice Period</th>
+                                    <th>Earliest Available Date</th>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control input-sm" name="noticePeriod" [(ngModel)]="candidate.noticePeriod" required> </td>
+                                    <td><input type="date" class="form-control input-sm" name="availableDate" [(ngModel)]="candidate.availableDate" required> </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='pd' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Personal Description</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>Strength</th>
+                                    <td colspan="2 "><input type="text " name="strength" [(ngModel)]="personalDetails.strength" required class="form-control "></td>
+                                </tr>
+                                <tr>
+                                    <th>Weakness</th>
+                                    <td colspan="2 "><input type="text " name="weakness" [(ngModel)]="personalDetails.weakness" required class="form-control "></td>
+                                </tr>
+                                <tr>
+                                    <th>Career Objrctive</th>
+                                    <td colspan="2 "><input type="text " name="objective" [(ngModel)]="personalDetails.objective" required class="form-control "></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='dec' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Declarations</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>1</th>
+                                    <td>Have you ever been convictedfor any criminal offences in any criminal proceedings?</td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration1" [(ngModel)]="candidate.declaration1" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_criminal ">Yes  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration1" [(ngModel)]="candidate.declaration1" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_criminal "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>2</th>
+                                    <td>Have you ever suffered from mental breakdown/serious injury/physical defects? Do you have any serious illness/contagious disease?
+                                        <br> if 'yes' please give reason
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration2" [(ngModel)]="candidate.declaration2" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_ill ">Yes  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration2" [(ngModel)]="candidate.declaration2" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_ill "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>3</th>
+                                    <td>Are you bankrupt or declared bankrupt?
+                                        <br> if 'yes' please give reason
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration3" [(ngModel)]="candidate.declaration3" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_bankrupt ">Yes  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration3" [(ngModel)]="candidate.declaration3" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_bankrupt "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>4</th>
+                                    <td>Have you ever been dismissed or suspended from any position?
+                                        <br> if 'yes' please give reason
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration4" [(ngModel)]="candidate.declaration4" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_dismissed ">Yes  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration4" [(ngModel)]="candidate.declaration4" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_dismissed "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>5</th>
+                                    <td>For Female applicants Only: Are you currently pregnant?
+                                        <br> if 'yes' please state current trimester of pregnancy.
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration5" [(ngModel)]="candidate.declaration5" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_pregnant ">Yes  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration5" [(ngModel)]="candidate.declaration5" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_pregnant "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>6</th>
+                                    <td>Have you ever been employed by the company? (Singapore or overseas related companies)
+                                        <br> if 'yes' please state your position and the department.
+                                    </td>
+                                    <td>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration6" [(ngModel)]="candidate.declaration6" required id="inlineRadio7" value="true">
+                                            <label class="form-check-label " for="yes_employed "> Yes /  </label>
+                                        </div>
+                                        <div class="form-check form-check-inline ">
+                                            <input class="form-check-input" type="radio" name="declaration6" [(ngModel)]="candidate.declaration6" required id="inlineRadio7" value="false">
+                                            <label class="form-check-label " for="no_employed "> No  </label>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="jumbotron mx-2 " *ngIf="currentPanel=='dec' ">
+                        <div>
+                            <div class="form-check form-check-inline ">
+                                <input type="checkbox" class="form-check-input " name="declaration7" [(ngModel)]="candidate.declaration7" required id="declarationCheck1 ">
+                                <label class="form-check-label " for="declarationCheck1 "></label>
+                            </div>
+                            I hereby declare that all information provided in this form is correct and true to the best of my knowledge. I hereby allow and authorize (hereinafter called “the company”) to investigate independently of all statements contained in this Application prior
+                            to my employment.</div>
+
+                        <div>
+                            <div class="form-check form-check-inline ">
+                                <input type="checkbox" class="form-check-input " name="declaration8" [(ngModel)]="candidate.declaration8" required id="declarationCheck1 ">
+                                <label class="form-check-label " for="declarationCheck2 "></label>
+                            </div>
+                            I also hereby give the company permission to contact schools, previous employers, references, others, to conduct checks and hereby release the company from any liability as a result of such contact. Any material, misrepresentation or omission of information
+                            shell be grounds for my prospective employer’s decision to reject my application or, it will be sufficient grounds for immediate dismissal without notice or payment in lieu of notice in the event that I am hired.
+                        </div>
+
+                        <div>
+                            <div class="form-check form-check-inline ">
+                                <input type="checkbox" class="form-check-input " name="declaration9" [(ngModel)]="candidate.declaration9" required id="declarationCheck1 ">
+                                <label class="form-check-label " for="declarationCheck3 "></label>
+                            </div>
+                            In compliance with the Personal Data Protection Act (PDPA), I give my consent to the company to collect and use my personal data that I have provided in the form for the purposes of recruitment and other related administration purpose. I agree that the
+                            company may disclose my personal data to third parties for accessing and evaluating my suitability for employment and other related matters.</div>
+
+                    </div>
+
+                    <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='rq' ">
+                        <div class="panel-heading font-weight-bold bg-secondary p-2 ">Pre Employement Test Form</div>
+                        <div class="table-responsive ">
+                            <table class="table ">
+                                <tr>
+                                    <th>Name</th>
+                                    <td><input type="text " name=" " class="form-control " id=" " value="{{personalDetails.fullName}}"></td>
+                                </tr>
+                                <tr>
+                                    <th>NRIC / FIN / Work Permit</th>
+                                    <td><input type="text " name=" " class="form-control " id=" " value="{{personalDetails.nricOrPassportNumber}}"></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="jumbotron my-2 ">
+                            <div class="font-weight-bold ">Are you a singaporean
+                                <div class="form-check form-check-inline ">
+                                    <input class="form-check-input" type="radio" name="singaporean" [(ngModel)]="candidate.singaporean" #singaporean="ngModel" required id="inlineRadio7" value="true">
+                                    <label class="form-check-label " for="yes_singaporean ">Yes</label>
+                                </div>
+                                <div class="form-check form-check-inline ">
+                                    <input class="form-check-input" type="radio" name="singaporean" [(ngModel)]="candidate.singaporean" #singaporean="ngModel" required id="inlineRadio7" value="false">
+                                    <label class="form-check-label " for="no_singaporean ">No</label>
+                                </div>
+                            </div>{{singaporean.value}}
+                            <div *ngIf="singaporean.value == 'true'">
+                                <table class="table ">
+                                    <tr>
+                                        <th colspan="2 ">Which Section have You served *</th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="sectionServed" [(ngModel)]="candidate.sectionServed" required id="sap " value="SAF">
+                                                <label class="form-check-label " for="sap ">SAF (Singapore Armed Force)</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="sectionServed" [(ngModel)]="candidate.sectionServed" required id="sap " value="SPF">
+                                                <label class="form-check-label " for="spf ">SPF (Singapore Police Force)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="sectionServed" [(ngModel)]="candidate.sectionServed" required id="sap " value="RSAF">
+                                                <label class="form-check-label " for="rsaf ">RSAF (Republic of Singapore Air Force)</label>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="sectionServed" [(ngModel)]="candidate.sectionServed" required id="sap " value="RSN">
+                                                <label class="form-check-label " for="rsn ">RSN (Republic of Singapore Navy)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2 ">
+                                            <div class="form-check form-check-inline ">
+                                                <input class="form-check-input " type="radio" name="sectionServed" [(ngModel)]="candidate.sectionServed" required id="sap " value="SCDF">
+                                                <label class="form-check-label " for="scdf ">SCDF (Singapore Civil Defence Force)</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="jumbotron ">
+                            <p class="font-weight-bold ">Instructions</p>
+                            <p>In the table below, for each statement 1-50 mark how much you agree with on the scale 1-5,</p>
+                            <span class="col-sm-12 col-md-2 ">1 = disagree</span>
+                            <span class="col-sm-12 col-md-2 ">2 = slightly disagree</span>
+                            <span class="col-sm-12 col-md-2 ">3 = neutral</span>
+                            <span class="col-sm-12 col-md-2 ">4 = slightly agree</span>
+                            <span class="col-sm-12 col-md-2 ">5 = agree</span>
+                        </div>
+                        <div class="table-responsive ">
+                            <table class="table " id="TableQuestions ">
+                                <tbody>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Rating</th>
+                                        <th>Question ( I.....) </th>
+                                    </tr>
+                                </tbody>
+                                <tr *ngFor="let rd of ratingData let i=index">
+                                    <td>{{i+1}}</td>
+                                    <td>
+                                        <!-- Rating Stars Box -->
+                                        <div class="rating-stars text-center ">
+                                            <ul id="stars">
+                                                <li class="star" title="Poor " data-value="1" (click)="onRate(i,1)">
+                                                    <i class="fa fa-star fa-fw "></i>
+                                                </li>
+                                                <li class="star" title="Fair " data-value="2" (click)="onRate(i,2)">
+                                                    <i class="fa fa-star fa-fw "></i>
+                                                </li>
+                                                <li class="star" title="Good " data-value="3" (click)="onRate(i,3)">
+                                                    <i class="fa fa-star fa-fw "></i>
+                                                </li>
+                                                <li class="star" title="Excellent " data-value="4" (click)="onRate(i,4)">
+                                                    <i class="fa fa-star fa-fw "></i>
+                                                </li>
+                                                <li class="star" title="WOW!!! " data-value="5" (click)="onRate(i,5)">
+                                                    <i class="fa fa-star fa-fw "></i>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                    <td>{{rd}}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="jumbotron p-5 mt-2 w-100 text-center ">
+
+                        <span style="float: left; ">
+                            <button type="button " class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
+                        </span>
+                        <button type="button " class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length">Submit</button>
+                        <button type="button " class="btn btn-outline-dark px-4 ">Cancel</button>
+                        <button type="button " class="btn btn-outline-dark px-4 " style="float: right; " (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-sm-12 card mt-2 ">
+
+        </div>
+        <!-- Modal -->
+        <div class="modal fade " id="exampleModal " tabindex="-1 " role="dialog " aria-labelledby="exampleModalLabel " aria-hidden="true ">
+            <div class="modal-dialog " role="document ">
+                <div class="modal-content ">
+                    <div class="modal-header bg-login ">
+                        <h5 class="modal-title " id="exampleModalLabel ">Login</h5>
+                        <button type="button " class="close " data-dismiss="modal " aria-label="Close ">
+                    <span aria-hidden="true ">&times;</span>
+                </button>
+                    </div>
+                    <div class="modal-body ">
+                        <form>
+                            <div class="form-group ">
+                                <label for="exampleInputEmail1 ">Email address</label>
+                                <input type="email " class="form-control " id="exampleInputEmail1 " aria-describedby="emailHelp " placeholder="Enter email ">
+                                <small id="emailHelp " class="form-text text-muted ">We'll never share your email with anyone else.</small>
+                            </div>
+                            <div class="form-group ">
+                                <label for="exampleInputPassword1 ">Password</label>
+                                <input type="password " class="form-control " id="exampleInputPassword1 " placeholder="Password ">
+                            </div>
+                            <div class="form-check ">
+                                <input type="checkbox" class="form-check-input " id="exampleCheck1 ">
+                                <label class="form-check-label " for="exampleCheck1 ">Remember me</label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer ">
+                        <button type="button " class="btn btn-secondary " data-dismiss="modal ">Close</button>
+                        <button type="button " class="btn btn-primary " id="btnLogin ">Login</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
