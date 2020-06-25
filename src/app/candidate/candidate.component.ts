@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
+import { StarRatingColor } from '../star-rating/star-rating.component';
+
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
@@ -8,6 +10,11 @@ import { NgForm } from '@angular/forms';
 })
 export class CandidateComponent implements OnInit {
 
+  rating:number = 3;
+  starCount:number = 5;
+  starColor:StarRatingColor = StarRatingColor.accent;
+  starColorP:StarRatingColor = StarRatingColor.primary;
+  starColorW:StarRatingColor = StarRatingColor.warn;
   constructor() { }
 
   @ViewChild('myForm') myForm:NgForm;
@@ -168,4 +175,9 @@ export class CandidateComponent implements OnInit {
   onRate(index,value){
     //this.ratingQuestions
   }
+  onRatingChanged(rating){
+    console.log(rating);
+    this.rating = rating;
+  }
+  
 }

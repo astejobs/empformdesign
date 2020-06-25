@@ -15,11 +15,23 @@
                             <table class="table">
                                 <tr>
                                     <td><label>Post Applied For</label></td>
-                                    <td><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel"> </td>
+                                    <td><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel"> 
+                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
+                                            This field is required
+                                        </mat-error>
+                                    </td>
                                     <td>Company</td>
-                                    <td><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel"> </td>
+                                    <td><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel"> 
+                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
+                                            This field is required
+                                        </mat-error>
+                                    </td>
                                     <td>Project Site</td>
-                                    <td><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel"> </td>
+                                    <td><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel">
+                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
+                                            This field is required
+                                        </mat-error>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="12">
@@ -728,6 +740,9 @@
                         </div>
                         <div class="jumbotron ">
                             <p class="font-weight-bold ">Instructions</p>
+                            
+                            
+                            
                             <p>In the table below, for each statement 1-50 mark how much you agree with on the scale 1-5,</p>
                             <span class="col-sm-12 col-md-2 ">1 = disagree</span>
                             <span class="col-sm-12 col-md-2 ">2 = slightly disagree</span>
@@ -746,12 +761,13 @@
                                 </tbody>
                                 <tr *ngFor="let rd of ratingData let i=index">
                                     <td>{{i+1}}</td>
-                                    <td>
+                                    <td><mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
                                         <!-- Rating Stars Box -->
-                                        <div class="rating-stars text-center ">
+                                        <!-- <div class="rating-stars text-center ">
                                             <ul id="stars">
                                                 <li class="star" title="Poor " data-value="1" (click)="onRate(i,1)">
-                                                    <i class="fa fa-star fa-fw "></i>
+                                                    <mat-star-rating [rating]="rating"  [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+                                                    
                                                 </li>
                                                 <li class="star" title="Fair " data-value="2" (click)="onRate(i,2)">
                                                     <i class="fa fa-star fa-fw "></i>
@@ -766,7 +782,7 @@
                                                     <i class="fa fa-star fa-fw "></i>
                                                 </li>
                                             </ul>
-                                        </div>
+                                        </div> -->
                                     </td>
                                     <td>{{rd}}</td>
                                 </tr>
