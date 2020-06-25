@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
-
+import { StarRatingModule } from 'angular-star-rating';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { CommonModule } from '@angular/common';
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
