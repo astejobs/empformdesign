@@ -17,7 +17,7 @@
 .rating-stars ul>li.star>i.fa {
     font-size: 1.5em;
     /* Change the size of the stars */
-    color: #ccc;
+    color: rgb(70, 21, 21);
     /* Color on idle state */
 }
 

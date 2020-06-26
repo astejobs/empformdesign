@@ -19,7 +19,6 @@ export class CandidateComponent implements OnInit {
   starColorW:StarRatingColor = StarRatingColor.warn;
   fileData: File = null;
   previewUrl:any = '/assets/images/image-picker.png';
-
   @ViewChild('myForm') myForm:NgForm;
 
   
@@ -211,20 +210,20 @@ export class CandidateComponent implements OnInit {
   fileProgress(fileInput: any) {
     this.fileData = <File>fileInput.target.files[0];
     this.preview();
-}
-preview() {
-  // Show preview 
-  var mimeType = this.fileData.type;
-  if (mimeType.match(/image\/*/) == null) {
-    return;
   }
-
+  preview() {
+  // Show preview 
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
     var reader = new FileReader();      
-    reader.readAsDataURL(this.fileData); 
+    reader.readAsDataURL(this.fileData);
     reader.onload = (_event) => { 
     this.previewUrl = reader.result;
     this.image=this.previewUrl;
+    }
   }
-}
+
   
 }

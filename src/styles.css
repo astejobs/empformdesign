@@ -109,3 +109,5 @@ input.ng-invalid.ng-touched {
     border-color: rgb(202, 34, 34);
     border-color: rgba(211, 41, 41, var(--border-opacity));
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
