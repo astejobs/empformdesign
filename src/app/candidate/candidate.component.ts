@@ -175,6 +175,7 @@ export class CandidateComponent implements OnInit {
   onRate(index,value){
     //this.ratingQuestions
   }
+  
   onRatingChanged(rating){
     console.log(rating);
     this.rating = rating;

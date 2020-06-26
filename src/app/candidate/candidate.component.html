@@ -16,20 +16,20 @@
                                 <tr>
                                     <td><label>Post Applied For</label></td>
                                     <td><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel"> 
-                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
-                                            This field is required
+                                        <mat-error *ngIf="postAppliedFor.invalid || (postAppliedFor.untouched && postAppliedFor.pristine)">
+                                            This field is required *
                                         </mat-error>
                                     </td>
                                     <td>Company</td>
                                     <td><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel"> 
-                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
-                                            This field is required
+                                        <mat-error *ngIf="company.invalid || (company.untouched && company.pristine)">
+                                            This field is required *
                                         </mat-error>
                                     </td>
                                     <td>Project Site</td>
                                     <td><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel">
-                                        <mat-error *ngIf="postAppliedFor.invalid || postAppliedFor.untouched">
-                                            This field is required
+                                        <mat-error *ngIf="projectSite.invalid || (projectSite.untouched && projectSite.pristine)">
+                                            This field is required *
                                         </mat-error>
                                     </td>
                                 </tr>
@@ -94,8 +94,11 @@
                                     <td>Full Name (as per NRIC / Passport)</td>
                                     <td colspan="2 "><input type="text " name="fullName " [(ngModel)]="personalDetails.fullName" required #pdName="ngModel" class="form-control "></td>
                                     <td rowspan="5 " style="width: 210px; ">Recent Passport Sized Photo
-                                        <input type="file " name=" " id="imgInp " class="d-none " />
-                                        <img src="image-picker.png " alt="Photo " class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
+                                        <div class="form-group">
+                                        <input type="file" #fileInput name="image" (change)="fileProgress($event)" 
+                                                    class="form-control d-none" accept="image/*"/>
+                                        </div>
+                                        <img src="assets/images/image-picker.png " alt="Photo " (click)="fileInput.click()" class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
                                     </td>
                                 </tr>
 
