@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { CandidateService } from './candidate.service';
 
 import { StarRatingColor } from '../star-rating/star-rating.component';
 
@@ -10,12 +11,14 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 })
 export class CandidateComponent implements OnInit {
 
-  rating:number = 3;
+  constructor(private candidateService:CandidateService) { }
+  rating = [];
   starCount:number = 5;
   starColor:StarRatingColor = StarRatingColor.accent;
   starColorP:StarRatingColor = StarRatingColor.primary;
   starColorW:StarRatingColor = StarRatingColor.warn;
-  constructor() { }
+  fileData: File = null;
+  previewUrl:any = '/assets/images/image-picker.png';
 
   @ViewChild('myForm') myForm:NgForm;
 
@@ -74,10 +77,12 @@ export class CandidateComponent implements OnInit {
   computerProficiencies:any=[];
   memberships:any=[];
   references:any=[];
-  ratingQuestions:any=[];
+  ratingQuestions:any={};
   panels:any = ['start','pp','bd','fp','eb','eh','lp','cp','ms','cr','ra','pd','dec','rq']
   currentPanel = 'start';
-  panelIndex=12;
+  panelIndex=0;
+  ratingQuestionsSize=0;
+  image:string;
   ngOnInit(): void {
       this.candidate = new Object();
       this.referralEmployee=new Object();
@@ -88,15 +93,39 @@ export class CandidateComponent implements OnInit {
       this.computerProficiencies.push(new Object());
       this.memberships.push(new Object());
       this.references.push(new Object());
-      this.ratingQuestions=Array(50).fill(0)
   }
-
+ 
   onSubmitForm(){
+      this.candidate.referralEmployee=this.referralEmployee;
+      this.candidate.personalDetails=this.personalDetails;
+      this.candidate.familyDetails=this.familyDetails;
+      this.candidate.educations=this.educations;
+      this.candidate.employmentHistories=this.employmentHistories;
+      this.candidate.computerProficiencies=this.computerProficiencies;
+      this.candidate.memberships=this.memberships;
+      this.candidate.references=this.references;
+      this.candidate.ratingQuestions=this.ratingQuestions;
+      this.candidate.languages=this.languages;
+      console.log(this.candidate);
+      this.candidateService.save(this.candidate).subscribe((response:any)=>{
+            if(response.status == 200){
+              console.log(response.body);
+            let img={
+                'id':response.body,
+                'image':this.image
+            }
+              this.candidateService.saveImage(img).subscribe((response:any)=>{
+                  
+              });
+              alert('success');
+            }else{
+              alert('something went wrong');
+            }
+      });
+    }
 
-  }
 
   onNext(index){
-      
       this.panelIndex++;
       this.currentPanel = this.panels[+index+1];
   }
@@ -172,12 +201,30 @@ export class CandidateComponent implements OnInit {
     this.references.splice(+index,1)
   }
 
-  onRate(index,value){
-    //this.ratingQuestions
+  
+  onRatingChanged(event){
+    this.rating[event.index] = event.rating;
+    let property='rating'+(++event.index);
+    this.ratingQuestions[property]=event.rating;
+    this.ratingQuestionsSize=Object.keys(this.ratingQuestions).length;
   }
-  onRatingChanged(rating){
-    console.log(rating);
-    this.rating = rating;
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+}
+preview() {
+  // Show preview 
+  var mimeType = this.fileData.type;
+  if (mimeType.match(/image\/*/) == null) {
+    return;
   }
+
+    var reader = new FileReader();      
+    reader.readAsDataURL(this.fileData); 
+    reader.onload = (_event) => { 
+    this.previewUrl = reader.result;
+    this.image=this.previewUrl;
+  }
+}
   
 }

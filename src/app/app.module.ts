@@ -1,13 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CandidateComponent } from './candidate/candidate.component';
 import { HeaderComponent } from './header/header.component';
 import { CommonModule } from '@angular/common';
-/* import { StarRatingModule } from 'angular-star-rating'; */
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     CommonModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatSnackBarModule,
     MatIconModule,
