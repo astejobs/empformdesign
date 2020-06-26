@@ -98,7 +98,7 @@
                                         <input type="file" #fileInput name="image" (change)="fileProgress($event)" 
                                                     class="form-control d-none" accept="image/*"/>
                                         </div>
-                                        <img src="assets/images/image-picker.png " alt="Photo " (click)="fileInput.click()" class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
+                                        <img [src]="previewUrl" alt="Photo " (click)="fileInput.click()" class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
                                     </td>
                                 </tr>
 
