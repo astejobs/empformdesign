@@ -1,0 +1,50 @@
+<!-- Default form login -->
+<form class="text-center border border-light">
+
+    <p class="h4 mb-4">Login</p>
+    <div class="m-3">
+
+        <!-- Username -->
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" #username aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+        <mat-error *ngIf="username.invalid || (username.untouched && username.dirty)">
+            <span class="text-danger">This field is required *</span>
+        </mat-error>
+    
+        <!-- Password -->
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" #password placeholder="Password">
+          </div>
+        
+        <mat-error *ngIf="password.invalid || (password.untouched && password.dirty)">
+            <span class="text-danger">This field is required *</span>
+        </mat-error>
+    
+        <div class="d-flex justify-content-around">
+        <div>
+            <!-- Remember me -->
+            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+        </div>
+        <div>
+            <!-- Forgot password -->
+            <a href="">Forgot password?</a>
+        </div>
+        </div>
+    
+        <!-- Sign in button -->
+        <button color="info"  routerLink="" class="btn btn-outline-info  btn-block my-4 waves-effect z-depth-0" type="button">Sign in</button>
+    
+        <!-- Register -->
+        <!-- <p>Not a member?
+        <a href="">Register</a>
+        </p> -->
+    </div>
+ 
+</form>
+<!-- Default form login -->
+   
+  

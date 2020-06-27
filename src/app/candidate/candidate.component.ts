@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { CandidateService } from './candidate.service';
 
 import { StarRatingColor } from '../star-rating/star-rating.component';
+import * as $ from "jquery";
 
 @Component({
   selector: 'app-candidate',
@@ -10,6 +11,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
   styleUrls: ['./candidate.component.css']
 })
 export class CandidateComponent implements OnInit {
+  validatingForm: any;
 
   constructor(private candidateService:CandidateService) { }
   rating = [];
@@ -92,6 +94,8 @@ export class CandidateComponent implements OnInit {
       this.computerProficiencies.push(new Object());
       this.memberships.push(new Object());
       this.references.push(new Object());
+
+      
   }
  
   onSubmitForm(){
@@ -224,6 +228,8 @@ export class CandidateComponent implements OnInit {
     this.image=this.previewUrl;
     }
   }
-
+ 
+  /* Login Model Form Code */
+  
   
 }
