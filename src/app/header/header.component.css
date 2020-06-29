@@ -1,0 +1,24 @@
+.head-text{
+    font-size: x-large;
+    font-family: roboto;
+    margin-top: 40px;
+}
+.btn-menu {
+    float: right;
+}
+::ng-deep .mat-menu-panel {
+    background-image: linear-gradient(to bottom right, rgb(159, 153, 241), rgb(155, 230, 247));
+    color: #fff;
+}
+
+button:focus {
+    outline: none;
+    border: 0;
+ }
+ mat-menu:focus {
+    outline: none;
+    border: 0;
+ }
+::ng-deep .mat-menu-content .mat-menu-item{
+    color: #fff !important;
+ }

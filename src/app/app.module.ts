@@ -18,14 +18,16 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
-
+import { EmpListComponent } from './emp-list/emp-list.component';
+import { MatMenuModule } from '@angular/material/menu'
 @NgModule({
   declarations: [
     AppComponent,
     CandidateComponent,
     HeaderComponent,
     StarRatingComponent,
-    LoginDialogComponent
+    LoginDialogComponent,
+    EmpListComponent
   ], 
   imports: [
     BrowserModule,
@@ -40,7 +42,9 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     MatTooltipModule,
     MatFormFieldModule,
     MatDialogModule,
-    MDBBootstrapModule
+    MDBBootstrapModule.forRoot(),
+    MatMenuModule
+
   ],
   providers: [],
   bootstrap: [AppComponent],
