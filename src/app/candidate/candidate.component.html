@@ -174,7 +174,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Place of Birth
+                                    <td>Place of Birth <span class="text-danger"> *</span>
                                         <input type="text" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdPob.invalid && (pdPob.dirty || pdPob.touched)">This field is required</mat-error>
                                     </td>
