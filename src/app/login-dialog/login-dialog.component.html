@@ -1,4 +1,5 @@
 <!-- Default form login -->
+
 <form class="text-center border border-light">
 
     <p class="h4 mb-4">Login</p>
@@ -6,8 +7,8 @@
 
         <!-- Username -->
         <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" #username aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="username" class="float-left">Email address</label>
+            <input type="email" class="form-control"  #username aria-describedby="emailHelp" placeholder="Enter email">
             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
           </div>
         <mat-error *ngIf="username.invalid || (username.untouched && username.dirty)">
@@ -16,7 +17,7 @@
     
         <!-- Password -->
         <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            <label for="exampleInputPassword1" class="float-left">Password</label>
             <input type="password" class="form-control" #password placeholder="Password">
           </div>
         
@@ -25,14 +26,14 @@
         </mat-error>
     
         <div class="d-flex justify-content-around">
-        <div>
-            <!-- Remember me -->
-            <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
-        </div>
-        <div>
-            <!-- Forgot password -->
-            <a href="">Forgot password?</a>
-        </div>
+            <div>
+                <!-- Remember me -->
+                <mdb-checkbox [default]="true">Remember me</mdb-checkbox>
+            </div>
+            <div>
+                <!-- Forgot password -->
+                <a href="">Forgot password?</a>
+            </div>
         </div>
     
         <!-- Sign in button -->
@@ -46,5 +47,6 @@
  
 </form>
 <!-- Default form login -->
+
    
   
