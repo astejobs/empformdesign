@@ -175,10 +175,10 @@
                                 </tr>
                                 <tr>
                                     <td>Place of Birth
-                                        <input type="date" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
+                                        <input type="text" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdPob.invalid && (pdPob.dirty || pdPob.touched)">This field is required</mat-error>
                                     </td>
-                                    <td>dateof Birth
+                                    <td>date of Birth
                                         <input type="date" name="dateOfBirth" [(ngModel)]="personalDetails.dateOfBirth" required id="dob " #pdDob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdDob.invalid && (pdDob.dirty || pdDob.touched)">This field is required</mat-error>
                                     </td>
