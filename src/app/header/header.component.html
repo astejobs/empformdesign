@@ -7,25 +7,21 @@
             <!-- <button type="button" class="btn btn-primary btn-sm btn-login" (click)="openDialog()" data-toggle="modal" data-target="#exampleModal">
                     Login
             </button> -->
-           <!--  <button mat-raised-button  color="primary">Pick one</button> -->
+            <!--  <button mat-raised-button  color="primary">Pick one</button> -->
             <span style="float: left;margin-left: 12%;" class="mt-3 mr-4"><img src="assets/images/STIE-Logo-color.png" alt="" width="200px" class="img-responsive"></span>
             <p class="lead d-none d-md-block head-text">Employment Form</p>
-         
+
             <!-- dropdown menu for user account -->
             <mat-menu #userMenu="matMenu">
-                <button mat-menu-item (click)="openDialog()">
+                <button mat-menu-item (click)="openDialog()" *ngIf="!isLoggedIn">
                     <mat-icon style="color: #ebe3e3;">account_circle</mat-icon>
                     <span>Login</span>
                 </button>
-                <button mat-menu-item>
-                    <mat-icon style="color: #ebe3e3;">settings</mat-icon>
-                    <span>Settings</span>
+                <button mat-menu-item *ngIf="isLoggedIn" routerLink="/candidates">
+                    <mat-icon style="color: #ebe3e3;">search</mat-icon>
+                    <span>Search Candidate </span>
                 </button>
-                <button mat-menu-item>
-                    <mat-icon style="color: #ebe3e3;">notifications_off</mat-icon>
-                    <span>Disable alerts</span>
-                </button>
-                <button mat-menu-item>
+                <button mat-menu-item *ngIf="isLoggedIn" (click)="logout()">
                     <mat-icon style="color: #ebe3e3;">logout</mat-icon>
                     <span>Logout</span>
                 </button>

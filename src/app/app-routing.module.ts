@@ -1,17 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CandidateComponent } from './candidate/candidate.component';
+import { AssessmentComponent } from './assessment/assessment.component';
 import { EmpListComponent } from './emp-list/emp-list.component';
+import { ReviewComponent } from './review/review.component';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'form', pathMatch: 'full'}, 
-  {path:'form',component:CandidateComponent},
-  {path:'employeeList',component:EmpListComponent}
+  {path: '', redirectTo: 'candidate', pathMatch: 'full'}, 
+  {path:'candidate',component:CandidateComponent},
+  {path:'assessment/:id',component:AssessmentComponent},
+  {path:'review/:id',component:ReviewComponent},
+  {path:'candidates',component:EmpListComponent}
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule] 
 })
 export class AppRoutingModule { }

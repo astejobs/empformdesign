@@ -1,0 +1,78 @@
+<form #myForm="ngForm" (ngSubmit)="onSubmitForm()">
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th class="bg-secondary" colspan="4">By Human Resource Department</th>
+                </tr>
+                <tr>
+                    <td>Applicant Name</td>
+                    <td><input type="text" name="" value="{{candidate?.personalDetails.fullName}}" class="form-control" id=""></td>
+                    <td>Company Name (Project)</td>
+                    <td><input type="text" value="{{candidate.company}} ({{candidate.projectSite}})" class="form-control" id=""></td>
+                </tr>
+                <tr>
+                    <td>Designation</td>
+                    <td><input type="text" value="{{candidate.postAppliedFor}}" class="form-control" id=""></td>
+                    <td>Date of Interview</td>
+                    <td><input type="date" value="{{candidate.interviewAssesment.interviewDate}}" class="form-control" id=""></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>Position Offer</td>
+                    <td colspan="3"><input type="text" name="position" [(ngModel)]="review.position" required #position="ngModel" class="form-control">
+                        <mat-error *ngIf="position.invalid && (position.dirty || position.touched)">This field is required</mat-error>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Commencement Date:</td>
+                    <td><input type="date" name="commencementDate" [(ngModel)]="review.commencementDate" required #commencementDate="ngModel" id="" class="form-control">
+                        <mat-error *ngIf="commencementDate.invalid && (commencementDate.dirty || commencementDate.touched)">This field is required</mat-error>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Employement Status:</td>
+                    <td colspan="3">
+                        <select class="form-control" name="status" [(ngModel)]="review.status" required #status="ngModel">
+                        <option value="Full Time">Full Time</option>
+                        <option value="Contract Basis">Contract Basis</option>
+                        <option value="Part Time">Part Time</option>
+                    </select>
+                        <mat-error *ngIf="status.invalid && (status.dirty || status.touched)">This field is required</mat-error>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Salary Offer: ($)</td>
+                    <td colspan="6"><input type="text" name="salaryOffer" [(ngModel)]="review.salaryOffer" required #salaryOffer="ngModel" id="" class="form-control">
+                        <mat-error *ngIf="salaryOffer.invalid && (salaryOffer.dirty || salaryOffer.touched)">This field is required</mat-error>
+                    </td>
+                    <td colspan="3">
+                        <select class="form-control" name="salaryTerm" [(ngModel)]="review.salaryTerm" required #salaryTerm="ngModel">
+                    <option value="hourly">Per Hour</option>
+                    <option value="monthly">Per Month</option>
+                 </select>
+                        <mat-error *ngIf="salaryTerm.invalid && (salaryTerm.dirty || salaryTerm.touched)">This field is required</mat-error>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2"><br><br>Human Resource Dept.</td>
+                    <td colspan="2"><br><input type="date" name="date" [(ngModel)]="review.date" required #date="ngModel" id="" class="form-control">
+                        <mat-error *ngIf="date.invalid && (date.dirty || date.touched)">This field is required</mat-error>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="jumbotron p-5 mt-2 w-100 text-center ">
+
+        <button type="submit" class="btn btn-outline-dark px-4 mr-4 " [disabled]="!myForm.valid">Submit</button>
+        <button type="button" class="btn btn-outline-dark px-4 ">Cancel</button>
+
+    </div>
+</form>

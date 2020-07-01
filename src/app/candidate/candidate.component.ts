@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { CandidateService } from './candidate.service';
+import { NgForm } from '@angular/forms';
 
 import { StarRatingColor } from '../star-rating/star-rating.component';
-import * as $ from "jquery";
+import { GeneralService } from '../general.service';
 
 @Component({
   selector: 'app-candidate',
@@ -11,9 +10,8 @@ import * as $ from "jquery";
   styleUrls: ['./candidate.component.css']
 })
 export class CandidateComponent implements OnInit {
-  validatingForm: any;
 
-  constructor(private candidateService:CandidateService) { }
+  constructor(private generalService:GeneralService) { }
   rating = [];
   starCount:number = 5;
   starColor:StarRatingColor = StarRatingColor.accent;
@@ -84,6 +82,8 @@ export class CandidateComponent implements OnInit {
   panelIndex=0;
   ratingQuestionsSize=0;
   image:string;
+  user:any={};
+
   ngOnInit(): void {
       this.candidate = new Object();
       this.referralEmployee=new Object();
@@ -94,8 +94,6 @@ export class CandidateComponent implements OnInit {
       this.computerProficiencies.push(new Object());
       this.memberships.push(new Object());
       this.references.push(new Object());
-
-      
   }
  
   onSubmitForm(){
@@ -110,14 +108,14 @@ export class CandidateComponent implements OnInit {
       this.candidate.ratingQuestions=this.ratingQuestions;
       this.candidate.languages=this.languages;
       console.log(this.candidate);
-      this.candidateService.save(this.candidate).subscribe((response:any)=>{
+      this.generalService.save(this.candidate).subscribe((response:any)=>{
             if(response.status == 200){
               console.log(response.body);
             let img={
                 'id':response.body,
                 'image':this.image
             }
-              this.candidateService.saveImage(img).subscribe((response:any)=>{
+              this.generalService.saveImage(img).subscribe((response:any)=>{
                   
               });
               alert('success');
@@ -227,9 +225,5 @@ export class CandidateComponent implements OnInit {
     this.previewUrl = reader.result;
     this.image=this.previewUrl;
     }
-  }
- 
-  /* Login Model Form Code */
-  
-  
+  } 
 }

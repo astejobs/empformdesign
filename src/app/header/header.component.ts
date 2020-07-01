@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LoginDialogComponent } from '../login-dialog/login-dialog.component';
+import { Router } from '@angular/router';
+import { GeneralService } from '../general.service';
 
 
 export interface DialogData {
@@ -16,7 +18,8 @@ export interface DialogData {
 export class HeaderComponent implements OnInit {
   username: string;
   password: string;
-  constructor(public dialog: MatDialog) {}
+  isLoggedIn=false;
+  constructor(public dialog: MatDialog,private router:Router,private generalService:GeneralService) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(LoginDialogComponent, {
@@ -27,10 +30,21 @@ export class HeaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       this.username = result;
-    });
+    }); 
   }
 
   ngOnInit(): void {
+    this.generalService.menu.subscribe(()=>{
+      this.isLoggedIn=!this.isLoggedIn;
+    });
+    this.isLoggedIn=localStorage.getItem('token') !=null?true:false;
+  }
+
+  logout(){
+    this.isLoggedIn=false;
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    this.router.navigateByUrl("/");
   }
 
 }

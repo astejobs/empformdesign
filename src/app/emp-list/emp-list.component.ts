@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild, ElementRef, ChangeDetectorRef, HostListener } from '@angular/core';
 import { MdbTableDirective, MdbTablePaginationComponent } from 'angular-bootstrap-md';
-import { EmployeeService } from '../services/employee.service';
+import { GeneralService } from '../general.service';
+import { Router } from '@angular/router';
 
 
 
@@ -15,30 +16,51 @@ export class EmpListComponent implements OnInit {
   elements: any = [];
   previous: any = [];
   searchText: string = ''; 
-  headElements = ['Id', 'Name', 'Username', 'Email'];
+  headElements = ['Name', 'Post Applied For','Project Site', 'Company'];
+  link:any;
+  role:string='';
 
   @HostListener('input') oninput() 
   { 
     this.searchItems();
   } 
 
-  constructor(private cdRef: ChangeDetectorRef, private es:EmployeeService) { }
+  constructor(private cdRef: ChangeDetectorRef, private generalService:GeneralService,private router:Router) {
+     this.role=localStorage.getItem('role');
+   }
 
   ngOnInit() {
-    
-      this.es.getEmployees().subscribe(data => {
-        this.elements = data; 
-       // console.log(this.elements);
-       this.mdbTable.setDataSource(this.elements);
-       this.elements = this.mdbTable.getDataSource();
-       this.previous = this.mdbTable.getDataSource();
-      })  
+      if(this.role == 'Interviewer'){
+        this.generalService.fetchCandidatesForAssessment().subscribe(data => {
+          this.setTableData(data);
+          this.link='/assessment';
+       })
+      }
+      else if(this.role=='HR'){
+        this.generalService.fetchCandidatesForReview().subscribe(data => {
+          this.setTableData(data);
+          this.link='/review';
+       })
+      }
+      else{
+        this.generalService.fetchCandidates().subscribe(data => {
+          this.setTableData(data);
+          this.link='#';
+       })
+      }
+        
 
   }
 
-  ngAfterViewInit() {
-    this.mdbTablePagination.setMaxVisibleItemsNumberTo(5);
+  setTableData(data){
+    this.elements = data; 
+    this.mdbTable.setDataSource(this.elements);
+    this.elements = this.mdbTable.getDataSource();
+    this.previous = this.mdbTable.getDataSource();
+  }
 
+  ngAfterViewInit() {
+    this.mdbTablePagination.setMaxVisibleItemsNumberTo(10);
     this.mdbTablePagination.calculateLastItemIndex();
     this.mdbTablePagination.calculateLastItemIndex();
     this.cdRef.detectChanges();
@@ -55,6 +77,8 @@ export class EmpListComponent implements OnInit {
     this.mdbTable.setDataSource(prev); 
     } 
   }
+
+  
  
   
 }

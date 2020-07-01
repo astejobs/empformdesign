@@ -1,0 +1,557 @@
+<div class="panel panel-success bg-light">
+    <form #myForm="ngForm" (ngSubmit)="onSubmitForm()">
+        <div class="panel-heading font-weight-bold bg-secondary p-2">Interview Assesment Form</div>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Applicant Name</td>
+                        <td><input type="text" name="" value="{{candidate?.personalDetails.fullName}}" class="form-control" id=""></td>
+                        <td>Company Name (Project)</td>
+                        <td><input type="text" value="{{candidate.company}} ({{candidate.projectSite}})" class="form-control" id=""></td>
+                    </tr>
+                    <tr>
+                        <td>Designation</td>
+                        <td><input type="text" value="{{candidate.postAppliedFor}}" class="form-control" id=""></td>
+                        <td>Date of Interview</td>
+                        <td>
+                            <input type="date" name="interviewDate" [(ngModel)]="assessment.interviewDate" required #interviewDate="ngModel" value="" class="form-control" id="">
+                            <mat-error *ngIf="interviewDate.invalid && (interviewDate.dirty || interviewDate.touched)">This field is required</mat-error>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <th>Criterions</th>
+                        <th>Not acceptable</th>
+                        <th>Below average</th>
+                        <th>Average</th>
+                        <th>Good</th>
+                        <th>Excellent</th>
+                        <th>Remarks</th>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Communication </b>
+                    <ul>
+                        <li>Express thoughts well, listening skills</li>
+                        <li>Talk ptofessionally</li>
+                    </ul>
+                    <b><mat-error *ngIf="communication.invalid && (communication.dirty || communication.touched)">This field is required</mat-error>
+                    </b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="communication" [(ngModel)]="assessment.communication" required #communication="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="communication" [(ngModel)]="assessment.communication" required #communication="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="communication" [(ngModel)]="assessment.communication" required #communication="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="communication" [(ngModel)]="assessment.communication" required #communication="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="communication" [(ngModel)]="assessment.communication" required #communication="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="communicationRemarks" [(ngModel)]="assessment.communicationRemarks" required #communicationRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="communicationRemarks.invalid && (communicationRemarks.dirty || communicationRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Job Knowledge and abilities </b>
+                    <ul>
+                        <li>Competency, job skills</li>
+                        <li>Knowing the job responsibilities</li>
+                    </ul>
+                    <b><mat-error *ngIf="knowledge.invalid && (knowledge.dirty || knowledge.touched)">This field is required</mat-error>
+                    </b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="knowledge" [(ngModel)]="assessment.knowledge" required #knowledge="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="knowledge" [(ngModel)]="assessment.knowledge" required #knowledge="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="knowledge" [(ngModel)]="assessment.knowledge" required #knowledge="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="knowledge" [(ngModel)]="assessment.knowledge" required #knowledge="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="knowledge" [(ngModel)]="assessment.knowledge" required #knowledge="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="knowledgeRemarks" [(ngModel)]="assessment.knowledgeRemarks" required #knowledgeRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="knowledgeRemarks.invalid && (knowledgeRemarks.dirty || knowledgeRemarks.touched)">This field is required</mat-error>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Response </b>
+                    <ul>
+                        <li>Mental Alertness, logic, responsive</li>
+                    </ul>
+                    <b><mat-error *ngIf="response.invalid && (response.dirty || response.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="response" [(ngModel)]="assessment.response" required #response="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="response" [(ngModel)]="assessment.response" required #response="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="response" [(ngModel)]="assessment.response" required #response="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="response" [(ngModel)]="assessment.response" required #response="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="response" [(ngModel)]="assessment.response" required #response="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="responseRemarks" [(ngModel)]="assessment.responseRemarks" required #responseRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="responseRemarks.invalid && (responseRemarks.dirty || responseRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Attitude </b>
+                    <ul>
+                        <li>Courteous, show enthusiasm</li>
+                    </ul>
+                    <b><mat-error *ngIf="attitude.invalid && (attitude.dirty || attitude.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attitude" [(ngModel)]="assessment.attitude" required #attitude="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attitude" [(ngModel)]="assessment.attitude" required #attitude="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attitude" [(ngModel)]="assessment.attitude" required #attitude="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attitude" [(ngModel)]="assessment.attitude" required #attitude="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="attitude" [(ngModel)]="assessment.attitude" required #attitude="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="attitudeRemarks" [(ngModel)]="assessment.attitudeRemarks" required #attitudeRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="attitudeRemarks.invalid && (attitudeRemarks.dirty || attitudeRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Initative</b>
+                    <ul>
+                        <li>Independent, resourceful, industrious, motivation</li>
+                        <li>Willing to go extra mile</li>
+                    </ul>
+                    <b><mat-error *ngIf="initiative.invalid && (initiative.dirty || initiative.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="initiative" [(ngModel)]="assessment.initiative" required #initiative="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="initiative" [(ngModel)]="assessment.initiative" required #initiative="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="initiative" [(ngModel)]="assessment.initiative" required #initiative="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="initiative" [(ngModel)]="assessment.initiative" required #initiative="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="initiative" [(ngModel)]="assessment.initiative" required #initiative="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="initiativeRemarks" [(ngModel)]="assessment.initiativeRemarks" required #initiativeRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="initiative.invalid && (initiative.dirty || initiative.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Personality </b>
+                    <ul>
+                        <li>Show Responsible,</li>
+                        <li>Have objective</li>
+                        <li>selt-descipline &amp; steady</li>
+                        <li>Emotion management.</li>
+                    </ul>
+                    <b><mat-error *ngIf="personality.invalid && (personality.dirty || personality.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personality" [(ngModel)]="assessment.personality" required #personality="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personality" [(ngModel)]="assessment.personality" required #personality="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personality" [(ngModel)]="assessment.personality" required #personality="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personality" [(ngModel)]="assessment.personality" required #personality="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="personality" [(ngModel)]="assessment.personality" required #personality="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="personalityRemarks" [(ngModel)]="assessment.personalityRemarks" required #personalityRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="personalityRemarks.invalid && (personalityRemarks.dirty || personalityRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Leadership</b>
+                    <ul>
+                        <li>Show management skill</li>
+                        <li>Experience in people management</li>
+                    </ul>
+                    <b><mat-error *ngIf="leadership.invalid && (leadership.dirty || leadership.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leadership" [(ngModel)]="assessment.leadership" required #leadership="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leadership" [(ngModel)]="assessment.leadership" required #leadership="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leadership" [(ngModel)]="assessment.leadership" required #leadership="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leadership" [(ngModel)]="assessment.leadership" required #leadership="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="leadership" [(ngModel)]="assessment.leadership" required #leadership="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="leadershipRemarks" [(ngModel)]="assessment.leadershipRemarks" required #leadershipRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="leadershipRemarks.invalid && (leadershipRemarks.dirty || leadershipRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Teamwork </b>
+                    <ul>
+                        <li>Team spirits</li>
+                        <li>communicable</li>
+                    </ul>
+                    <b><mat-error *ngIf="teamwork.invalid && (teamwork.dirty || teamwork.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamwork" [(ngModel)]="assessment.teamwork" required #teamwork="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamwork" [(ngModel)]="assessment.teamwork" required #teamwork="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamwork" [(ngModel)]="assessment.teamwork" required #teamwork="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamwork" [(ngModel)]="assessment.teamwork" required #teamwork="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamwork" [(ngModel)]="assessment.teamwork" required #teamwork="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="teamworkRemarks" [(ngModel)]="assessment.teamworkRemarks" required #teamworkRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="teamworkRemarks.invalid && (teamworkRemarks.dirty || teamworkRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Appearance &amp; professional image </b>
+                    <ul>
+                        <li>Dress sense</li>
+                        <li>Body language</li>
+                    </ul>
+                    <b><mat-error *ngIf="appearance.invalid && (appearance.dirty || appearance.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="appearance" [(ngModel)]="assessment.appearance" required #appearance="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="appearance" [(ngModel)]="assessment.appearance" required #appearance="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="appearance" [(ngModel)]="assessment.appearance" required #appearance="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="appearance" [(ngModel)]="assessment.appearance" required #appearance="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="appearance" [(ngModel)]="assessment.appearance" required #appearance="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="appearanceRemarks" [(ngModel)]="assessment.appearanceRemarks" required #appearanceRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="appearanceRemarks.invalid && (appearanceRemarks.dirty || appearanceRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <small>
+                    <b>Overall Assessment</b><br>(Consider all the above)
+                    <b><mat-error *ngIf="overall.invalid && (overall.dirty || overall.touched)">This field is required</mat-error></b>
+                </small>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="overall" [(ngModel)]="assessment.overall" required #overall="ngModel" id="c_na" value="Not acceptable">
+                                <label class="form-check-label" for="c_na"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="overall" [(ngModel)]="assessment.overall" required #overall="ngModel" id="c_na" value="Below average">
+                                <label class="form-check-label" for="c_ba"> Yes   </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="overall" [(ngModel)]="assessment.overall" required #overall="ngModel" id="c_na" value="Average">
+                                <label class="form-check-label" for="c_av">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="overall" [(ngModel)]="assessment.overall" required #overall="ngModel" id="c_na" value="Good">
+                                <label class="form-check-label" for="c_gud">  Yes  </label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="overall" [(ngModel)]="assessment.overall" required #overall="ngModel" id="c_na" value="Excellent">
+                                <label class="form-check-label" for="c_exl">  Yes  </label>
+                            </div>
+                        </td>
+                        <td><input type="text" name="overallRemarks" [(ngModel)]="assessment.overallRemarks" required #overallRemarks="ngModel" id="" class="form-control">
+                            <mat-error *ngIf="overallRemarks.invalid && (overallRemarks.dirty || overallRemarks.touched)">This field is required</mat-error>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Recomended for offer
+                            <mat-error *ngIf="recommended.invalid && (recommended.dirty || recommended.touched)">This field is required</mat-error><br></th>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="yes_recomended">Yes   &nbsp;</label>
+                                <input class="form-check-input" type="radio" name="recommended" [(ngModel)]="assessment.recommended" required #recommended="ngModel" id="c_na" value="Yes">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="not_recomended">No   &nbsp;</label>
+                                <input class="form-check-input" type="radio" name="recommended" [(ngModel)]="assessment.recommended" required #recommended="ngModel" id="c_na" value="No">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-check form-check-inline">
+                                <label class="form-check-label" for="kiv">  KIV  &nbsp;</label>
+                                <input class="form-check-input" type="radio" name="recommended" [(ngModel)]="assessment.recommended" required #recommended="ngModel" id="c_na" value="KIV">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>
+                            Interviewed by, <br> <br>
+                            <tr>
+                                <td><input type="text" name="interviewer1" [(ngModel)]="assessment.interviewer1" required #interviewer1="ngModel" id="" class="form-control" />
+                                    <mat-error *ngIf="interviewer1.invalid && (interviewer1.dirty || interviewer1.touched)">This field is required</mat-error>
+                                </td>
+                            </tr>
+                        </td>
+                        <td>
+                            Interviewed by, <br> <br>
+                            <tr>
+                                <td><input type="text" name="interviewer2" [(ngModel)]="assessment.interviewer2" required #interviewer2="ngModel" id="" class="form-control" />
+                                    <mat-error *ngIf="interviewer2.invalid && (interviewer2.dirty || interviewer2.touched)">This field is required</mat-error>
+                                </td>
+                            </tr>
+                        </td>
+                        <td>
+                            Approved by, <br> <br>
+                            <tr>
+                                <td><input type="text" name="approvedBy" [(ngModel)]="assessment.approvedBy" required #approvedBy="ngModel" id="" class="form-control" />
+                                    <mat-error *ngIf="approvedBy.invalid && (approvedBy.dirty || approvedBy.touched)">This field is required</mat-error>
+                                </td>
+                            </tr>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <p>General Comments:</p>
+            <textarea name="generalComments" [(ngModel)]="assessment.generalComments" required #generalComments="ngModel" id="" cols="30" rows="3" class="form-control"></textarea>
+            <mat-error *ngIf="generalComments.invalid && (generalComments.dirty || generalComments.touched)">This field is required</mat-error>
+        </div>
+        <div class="jumbotron p-5 mt-2 w-100 text-center ">
+
+            <button type="submit" class="btn btn-outline-dark px-4 mr-4 " [disabled]="!myForm.valid">Submit</button>
+            <button type="button" class="btn btn-outline-dark px-4 ">Cancel</button>
+
+        </div>
+    </form>
+</div>
