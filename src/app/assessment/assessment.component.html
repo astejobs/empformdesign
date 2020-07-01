@@ -1,6 +1,6 @@
 <div class="panel panel-success bg-light">
     <form #myForm="ngForm" (ngSubmit)="onSubmitForm()">
-        <div class="panel-heading font-weight-bold bg-secondary p-2">Interview Assesment Form</div>
+        <div class="panel-heading font-weight-bold bg-secondary p-2">Interview Assessment Form</div>
         <div class="table-responsive">
             <table class="table">
                 <tbody>
@@ -36,7 +36,7 @@
                     <b>Communication </b>
                     <ul>
                         <li>Express thoughts well, listening skills</li>
-                        <li>Talk ptofessionally</li>
+                        <li>Talk professionally</li>
                     </ul>
                     <b><mat-error *ngIf="communication.invalid && (communication.dirty || communication.touched)">This field is required</mat-error>
                     </b>
@@ -263,7 +263,7 @@
                     <ul>
                         <li>Show Responsible,</li>
                         <li>Have objective</li>
-                        <li>selt-descipline &amp; steady</li>
+                        <li>self-descipline &amp; steady</li>
                         <li>Emotion management.</li>
                     </ul>
                     <b><mat-error *ngIf="personality.invalid && (personality.dirty || personality.touched)">This field is required</mat-error></b>
@@ -354,7 +354,7 @@
                     <b>Teamwork </b>
                     <ul>
                         <li>Team spirits</li>
-                        <li>communicable</li>
+                        <li>Communicable</li>
                     </ul>
                     <b><mat-error *ngIf="teamwork.invalid && (teamwork.dirty || teamwork.touched)">This field is required</mat-error></b>
                 </small>
@@ -515,7 +515,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            Interviewed by, <br> <br>
+                            Interviewed by <br> <br>
                             <tr>
                                 <td><input type="text" name="interviewer1" [(ngModel)]="assessment.interviewer1" required #interviewer1="ngModel" id="" class="form-control" />
                                     <mat-error *ngIf="interviewer1.invalid && (interviewer1.dirty || interviewer1.touched)">This field is required</mat-error>
@@ -523,7 +523,7 @@
                             </tr>
                         </td>
                         <td>
-                            Interviewed by, <br> <br>
+                            Interviewed by <br> <br>
                             <tr>
                                 <td><input type="text" name="interviewer2" [(ngModel)]="assessment.interviewer2" required #interviewer2="ngModel" id="" class="form-control" />
                                     <mat-error *ngIf="interviewer2.invalid && (interviewer2.dirty || interviewer2.touched)">This field is required</mat-error>

@@ -22,7 +22,7 @@ export class CandidateComponent implements OnInit {
   @ViewChild('myForm') myForm:NgForm;
 
   
-  ratingData = ["am the life of the party", "feel little concern for others","am always prepared","get stressed out easily","have a rich vocabulary","dont talk a lot","am interested in people","leave my belongings around",
+  ratingData = ["am the life of the party", "feel little concern for others","am always prepared","get stressed out easily","have a rich vocabulary","don't talk a lot","am interested in people","leave my belongings around",
   "am relaxed most of the time",
    "have difficulty understanding abstract ideas",
    "feel confortable around people",
@@ -37,13 +37,13 @@ export class CandidateComponent implements OnInit {
   "am not interested in abstract ideas",
   "start conversations",
   "am not interested in other people's problems",
-  "sget chores done right away",
+  "get chores done right away",
   "am easily disturbed",
   "have excellent ideas",
   "have little to say",
   "have a soft heart",
   "often forgot to put things back in their proper place",
-  "Get upset easily",
+  "get upset easily",
   "do not have a good imagination",
   "talk to a lot of different people at parties",
   "am really interested in others",
@@ -64,7 +64,7 @@ export class CandidateComponent implements OnInit {
   "make people at ease",
   "am exacting in my work",
   "often feel blue",
-  "am full of idaes"
+  "am full of ideas"
 ]
   candidate:any;
   referralEmployee:any;
@@ -83,6 +83,10 @@ export class CandidateComponent implements OnInit {
   ratingQuestionsSize=0;
   image:string;
   user:any={};
+  successMsg='';
+  showSucessMsg=false;
+  errorMsg='';
+  showErrorMsg=false;
 
   ngOnInit(): void {
       this.candidate = new Object();
@@ -118,9 +122,9 @@ export class CandidateComponent implements OnInit {
               this.generalService.saveImage(img).subscribe((response:any)=>{
                   
               });
-              alert('success');
+              this.showMessage('Data saved successfully')
             }else{
-              alert('something went wrong');
+              this.showErrorMessage('Something went wrong.Please try again')
             }
       });
     }
@@ -225,5 +229,17 @@ export class CandidateComponent implements OnInit {
     this.previewUrl = reader.result;
     this.image=this.previewUrl;
     }
-  } 
+  }
+  
+  showMessage(msg){
+    this.showErrorMsg=false;
+    this.showSucessMsg=true;
+    this.successMsg=msg;
+  }
+
+  showErrorMessage(msg){
+    this.showSucessMsg=false;
+    this.showErrorMsg=true;
+    this.errorMsg=msg;
+  }
 }

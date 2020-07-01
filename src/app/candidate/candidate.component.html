@@ -8,8 +8,11 @@
                             <h5 class="panel-title text-uppercase py-1">Employment Application Form</h5>
                         </div>
 
-                        <div class="panel-body text-danger">
-                            <small>Fields marked with * are required</small>
+                        <div class="panel-body text-danger" *ngIf="showSucessMsg">
+                            <small>{{successMsg}}</small>
+                        </div>
+                        <div class="panel-body text-success" *ngIf="showErrorMsg">
+                            <small>{{errorMsg}}</small>
                         </div>
                         <div class="table-responsive">
                             <table class="table">
@@ -168,13 +171,13 @@
                                             <mat-error *ngIf="pdPr.invalid && (pdPr.dirty || pdPr.touched)">This field is required</mat-error>
 
                                     </td>
-                                    <td>Date Attained SPR Status
+                                    <td *ngIf="pdPr.value == 'true'">Date Attained SPR Status
                                         <input type="date" name="sprDate" [(ngModel)]="personalDetails.sprDate" required id="spr " #pdSprDate="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdSprDate.invalid && (pdSprDate.dirty || pdSprDate.touched)">This field is required</mat-error>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>Place of Birth <span class="text-danger"> *</span>
+                                    <td>Place of Birth
                                         <input type="text" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdPob.invalid && (pdPob.dirty || pdPob.touched)">This field is required</mat-error>
                                     </td>
@@ -183,7 +186,7 @@
                                         <mat-error *ngIf="pdDob.invalid && (pdDob.dirty || pdDob.touched)">This field is required</mat-error>
                                     </td>
                                     <td>Age
-                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" pattern="\d{2}" required id="age " #pdAge="ngModel" class="form-control ">
+                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" minlength="18" pattern="\d{2}" required id="age " #pdAge="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdAge.invalid && (pdAge.dirty || pdAge.touched)">This field is required and Age should be in 2 digits</mat-error>
                                     </td>
                                 </tr>
@@ -515,7 +518,7 @@
                                 <tr>
                                     <th>From</th>
                                     <th>To</th>
-                                    <th>Name of Societes /Clubs / Associations</th>
+                                    <th>Name of Societies /Clubs / Associations</th>
                                     <th>Position Held</th>
                                     <th>Delete</th>
                                 </tr>
@@ -580,7 +583,7 @@
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addReference()">Add More</button>
-                        <p><small><i>(Please provide particulars of two people who are not related to you. The should be referees
+                        <p><small><i>(Please provide particulars of two people who are not related to you. These should be referees
                         who know you well with regard to your character and work performance.)</i></small></p>
                     </div>
 
@@ -592,7 +595,7 @@
                                     <th>Expected Salary</th>
                                     <th>Current Salary</th>
                                     <th>AWS / Variable Bonus</th>
-                                    <th>Allowance (Please-Specify)</th>
+                                    <th>Allowance (Please specify)</th>
                                 </tr>
 
                                 <tr>
@@ -663,7 +666,7 @@
                             <table class="table ">
                                 <tr>
                                     <th>1</th>
-                                    <td>Have you ever been convictedfor any criminal offences in any criminal proceedings?
+                                    <td>Have you ever been convicted for any criminal offences in any criminal proceedings?
                                         <mat-error *ngIf="declaration1.invalid && (declaration1.dirty || declaration1.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -783,7 +786,7 @@
                                 <label class="form-check-label " for="declarationCheck2 "></label>
                             </div>
                             I also hereby give the company permission to contact schools, previous employers, references, others, to conduct checks and hereby release the company from any liability as a result of such contact. Any material, misrepresentation or omission of information
-                            shell be grounds for my prospective employer’s decision to reject my application or, it will be sufficient grounds for immediate dismissal without notice or payment in lieu of notice in the event that I am hired.
+                            shall be grounds for my prospective employer’s decision to reject my application or, it will be sufficient grounds for immediate dismissal without notice or payment in lieu of notice in the event that I am hired.
                             <mat-error *ngIf="declaration8.invalid && (declaration8.dirty || declaration8.touched)">This field is required</mat-error>
                         </div>
 
@@ -812,7 +815,7 @@
                             </table>
                         </div>
                         <div class="jumbotron my-2 ">
-                            <div class="font-weight-bold ">Are you a singaporean
+                            <div class="font-weight-bold ">Are you a Singaporean
                                 <div class="form-check form-check-inline ">
                                     <input class="form-check-input" type="radio" name="singaporean" [(ngModel)]="candidate.singaporean" #singaporean="ngModel" required id="inlineRadio7" value="true">
                                     <label class="form-check-label " for="yes_singaporean ">Yes</label>
