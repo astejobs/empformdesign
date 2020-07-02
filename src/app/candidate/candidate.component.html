@@ -181,12 +181,12 @@
                                         <input type="text" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdPob.invalid && (pdPob.dirty || pdPob.touched)">This field is required</mat-error>
                                     </td>
-                                    <td>date of Birth
+                                    <td>Date of Birth
                                         <input type="date" name="dateOfBirth" [(ngModel)]="personalDetails.dateOfBirth" required id="dob " #pdDob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdDob.invalid && (pdDob.dirty || pdDob.touched)">This field is required</mat-error>
                                     </td>
-                                    <td>Age
-                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" minlength="18" pattern="\d{2}" required id="age " #pdAge="ngModel" class="form-control ">
+                                    <td>Age                                                     <!-- minlength="18" -->
+                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" pattern="\d{2}"   required id="age" #pdAge="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdAge.invalid && (pdAge.dirty || pdAge.touched)">This field is required and Age should be in 2 digits</mat-error>
                                     </td>
                                 </tr>
@@ -684,6 +684,7 @@
                                     <th>2</th>
                                     <td>Have you ever suffered from mental breakdown/serious injury/physical defects? Do you have any serious illness/contagious disease?
                                         <br> if 'yes' please give reason
+                                        <div *ngIf="declaration2.value == 'true'"><input type="text" name="" class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration2.invalid && (declaration2.dirty || declaration2.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -701,6 +702,7 @@
                                     <th>3</th>
                                     <td>Are you bankrupt or declared bankrupt?
                                         <br> if 'yes' please give reason
+                                        <div *ngIf="declaration3.value == 'true'"><input type="text" name="" class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration3.invalid && (declaration3.dirty || declaration3.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -718,6 +720,7 @@
                                     <th>4</th>
                                     <td>Have you ever been dismissed or suspended from any position?
                                         <br> if 'yes' please give reason
+                                        <div *ngIf="declaration4.value == 'true'"><input type="text" name="" class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration4.invalid && (declaration4.dirty || declaration4.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -735,6 +738,7 @@
                                     <th>5</th>
                                     <td>For Female applicants Only: Are you currently pregnant?
                                         <br> if 'yes' please state current trimester of pregnancy.
+                                        <div *ngIf="declaration5.value == 'true'"><input type="text" name="" class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration5.invalid && (declaration5.dirty || declaration5.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -752,16 +756,17 @@
                                     <th>6</th>
                                     <td>Have you ever been employed by the company? (Singapore or overseas related companies)
                                         <br> if 'yes' please state your position and the department.
+                                        <div *ngIf="declaration6.value == 'true'"><input type="text" name="" class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration6.invalid && (declaration6.dirty || declaration6.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input" type="radio" name="declaration6" [(ngModel)]="candidate.declaration6" #declaration6="ngModel" required id="inlineRadio7" value="true">
-                                            <label class="form-check-label " for="yes_employed "> Yes /  </label>
+                                            <label class="form-check-label " for="yes_employed "> Yes</label>
                                         </div>
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input" type="radio" name="declaration6" [(ngModel)]="candidate.declaration6" #declaration6="ngModel" required id="inlineRadio7" value="false">
-                                            <label class="form-check-label " for="no_employed "> No  </label>
+                                            <label class="form-check-label " for="no_employed "> No </label>
                                         </div>
                                     </td>
                                 </tr>
