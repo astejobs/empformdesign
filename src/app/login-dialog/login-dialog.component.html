@@ -7,10 +7,9 @@
 
         <!-- Username -->
         <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
+            <label for="exampleInputEmail1" class="float-left">Username</label>
             <input type="text" class="form-control" name="username" [(ngModel)]="user.username" required #username aria-describedby="emailHelp" placeholder="Enter userame">
-            <!--             <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
- --></div>
+        </div>
         <mat-error *ngIf="username.invalid || (username.untouched && username.dirty)">
             <span class="text-danger">This field is required *</span>
         </mat-error>
