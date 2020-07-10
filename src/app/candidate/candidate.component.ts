@@ -128,7 +128,7 @@ export class CandidateComponent implements OnInit {
             }
       });
     }
-
+ 
 
   onNext(index){
       this.panelIndex++;

@@ -668,9 +668,10 @@
                                 <tr>
                                     <th>1</th>
                                     <td>Have you ever been convicted for any criminal offences in any criminal proceedings?
-                                        <div *ngIf="declaration1.value == 'true'"><input type="text" name="declaration1Reason" [(ngModel)]="candidate.declaration1Reason" #declaration1Reason required class="form-control" id=""></div>
+                                        <div *ngIf="declaration1.value == 'true'"><input type="text" name="declaration1Reason" [(ngModel)]="candidate.declaration1Reason" required class="form-control" id="" #declarationReason="ngModel"></div>
                                         <mat-error *ngIf="declaration1.invalid && (declaration1.dirty || declaration1.touched)">This field is required</mat-error>
-                                        <mat-error *ngIf="declaration1Reason.invalid && (declaration1Reason.dirty || declaration1Reason.touched)">This field is required</mat-error>
+                                        <!--                                         <mat-error *ngIf="declarationReason.invalid && (declarationReason.dirty || declarationReason.touched)">This field is required</mat-error>
+ -->
                                     </td>
                                     <td>
                                         <div class="form-check form-check-inline ">
@@ -687,8 +688,8 @@
                                     <th>2</th>
                                     <td>Have you ever suffered from mental breakdown/serious injury/physical defects? Do you have any serious illness/contagious disease?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration2.value == 'true'"><input type="text" name="declaration2Reason" [(ngModel)]="candidate.declaration2Reason" #declaration2Reason required class="form-control" id=""></div>
-                                        <mat-error *ngIf="declaration2Reason.invalid && (declaration2Reason.dirty || declaration2Reason.touched)">This field is required</mat-error>
+                                        <div *ngIf="declaration2.value == 'true'"><input type="text" name="declaration2Reason" [(ngModel)]="candidate.declaration2Reason" #declaration2Reason="ngModel" required class="form-control" id=""></div>
+                                        <!-- <mat-error *ngIf="declaration2Reason.invalid && (declaration2Reason.dirty || declaration2Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration2.invalid && (declaration2.dirty || declaration2.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -706,8 +707,8 @@
                                     <th>3</th>
                                     <td>Are you bankrupt or declared bankrupt?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration3.value == 'true'"><input type="text" name="declaration3Reason" [(ngModel)]="candidate.declaration3Reason" #declaration3Reason required class="form-control" id=""></div>
-                                        <mat-error *ngIf="declaration3Reason.invalid && (declaration3Reason.dirty || declaration3Reason.touched)">This field is required</mat-error>
+                                        <div *ngIf="declaration3.value == 'true'"><input type="text" name="declaration3Reason" [(ngModel)]="candidate.declaration3Reason" #declaration3Reason="ngModel" required class="form-control" id=""></div>
+                                        <!-- <mat-error *ngIf="declaration3Reason.invalid && (declaration3Reason.dirty || declaration3Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration3.invalid && (declaration3.dirty || declaration3.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -725,8 +726,8 @@
                                     <th>4</th>
                                     <td>Have you ever been dismissed or suspended from any position?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration4.value == 'true'"><input type="text" name="declaration4Reason" [(ngModel)]="candidate.declaration4Reason" #declaration4Reason required class="form-control" id=""></div>
-                                        <mat-error *ngIf="declaration4Reason.invalid && (declaration4Reason.dirty || declaration4Reason.touched)">This field is required</mat-error>
+                                        <div *ngIf="declaration4.value == 'true'"><input type="text" name="declaration4Reason" [(ngModel)]="candidate.declaration4Reason" #declaration4Reason="ngModel" required class="form-control" id=""></div>
+                                        <!-- <mat-error *ngIf="declaration4Reason.invalid && (declaration4Reason.dirty || declaration4Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration4.invalid && (declaration4.dirty || declaration4.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -744,8 +745,8 @@
                                     <th>5</th>
                                     <td>For Female applicants Only: Are you currently pregnant?
                                         <br> if 'yes' please state current trimester of pregnancy.
-                                        <div *ngIf="declaration5.value == 'true'"><input type="text" name="declaration5Reason" [(ngModel)]="candidate.declaration5Reason" #declaration5Reason required class="form-control" id=""></div>
-                                        <mat-error *ngIf="declaration5Reason.invalid && (declaration5Reason.dirty || declaration5Reason.touched)">This field is required</mat-error>
+                                        <div *ngIf="declaration5.value == 'true'"><input type="text" name="declaration5Reason" [(ngModel)]="candidate.declaration5Reason" #declaration5Reason="ngModel" required class="form-control" id=""></div>
+                                        <!-- <mat-error *ngIf="declaration5Reason.invalid && (declaration5Reason.dirty || declaration5Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration5.invalid && (declaration5.dirty || declaration5.touched)">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -763,9 +764,9 @@
                                     <th>6</th>
                                     <td>Have you ever been employed by the company? (Singapore or overseas related companies)
                                         <br> if 'yes' please state your position and the department.
-                                        <div *ngIf="declaration6.value == 'true'"><input type="text" name="declaration6Reason" [(ngModel)]="candidate.declaration6Reason" #declaration6Reason required class="form-control" id=""></div>
+                                        <div *ngIf="declaration6.value == 'true'"><input type="text" name="declaration6Reason" [(ngModel)]="candidate.declaration6Reason" #declaration6Reason="ngModel" required class="form-control" id=""></div>
                                         <mat-error *ngIf="declaration6.invalid && (declaration6.dirty || declaration6.touched)">This field is required</mat-error>
-                                        <mat-error *ngIf="declaration6Reason.invalid && (declaration6Reason.dirty || declaration6Reason.touched)">This field is required</mat-error>
+                                        <!-- <mat-error *ngIf="declaration6Reason.invalid && (declaration6Reason.dirty || declaration6Reason.touched)">This field is required</mat-error> -->
                                     </td>
                                     <td>
                                         <div class="form-check form-check-inline ">
