@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main-container">
     <div class="row">
         <div class="col-sm-12 card">
             <div class="mt-2">
@@ -14,24 +14,24 @@
                         <div class="panel-body text-success" *ngIf="showErrorMsg">
                             <small>{{errorMsg}}</small>
                         </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <td><label>Post Applied For</label></td>
-                                    <td><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel">
+                        <div class="container-fluid">
+                            <!-- <table class="table"> -->
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-2"><label>Post Applied For</label></div>
+                                    <div class="col-sm-12 col-md-2"><input type="text" class="form-control input-sm" name="postAppliedFor" [(ngModel)]="candidate.postAppliedFor" required #postAppliedFor="ngModel">
                                         <mat-error *ngIf="postAppliedFor.invalid && (postAppliedFor.dirty || postAppliedFor.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Company</td>
-                                    <td><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2">Company</div>
+                                        <div class="col-sm-12 col-md-2"><input type="text" class="form-control input-sm" name="company" [(ngModel)]="candidate.company" required #company="ngModel">
                                         <mat-error *ngIf="company.invalid && (company.dirty || company.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Project Site</td>
-                                    <td><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2">Project Site</div>
+                                        <div class="col-sm-12 col-md-2"><input type="text" class="form-control input-sm" name="projectSite" [(ngModel)]="candidate.projectSite" required #projectSite="ngModel">
                                         <mat-error *ngIf="projectSite.invalid && (projectSite.dirty || projectSite.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="12">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12" >
                                         <p class="lead">How did you learn about this position?</p>
                                         <div class="form-check form-check-inline">
                                             <input class="form-check-input" type="radio" name="infoAboutPosition" [(ngModel)]="candidate.infoAboutPosition" required #infoAboutPosition="ngModel" id="inlineRadio1" value="Job portals">
@@ -59,11 +59,11 @@
                                         </div>
                                         <mat-error *ngIf="infoAboutPosition.invalid && (infoAboutPosition.dirty || infoAboutPosition.touched)">This field is required</mat-error>
 
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
 
-                                <tr>
-                                    <td colspan="12">
+                                <div class="row">
+                                    <div class="col-sm-12">
                                         <div class="lead">Are you referral by any employee working in the company?
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="referral" [(ngModel)]="candidate.referral" required #referral="ngModel" id="inlineRadio7" value="true">
@@ -87,38 +87,38 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            <!-- </table> -->
                         </div>
                     </div>
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='pp' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Personal Particulars</div>
-                        <div class="table-responsive ">
-                            <table class="table ">
-                                <tr>
-                                    <td>Full Name (as per NRIC / Passport)</td>
-                                    <td colspan="2 ">
+                        <div class="container-fluid ">
+                            <!-- <table class="table "> -->
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3">Full Name (as per NRIC / Passport)</div>
+                                    <div class="col-sm-12 col-md-7">
                                         <input type="text " name="fullName " [(ngModel)]="personalDetails.fullName" required #pdName="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdName.invalid && (pdName.dirty || pdName.touched)">This field is required</mat-error>
 
-                                    </td>
-                                    <td rowspan="5 " style="width: 210px; ">Recent Passport Sized Photo
+                                    </div>
+                                    <div class="col-sm-12 col-md-2">Recent Passport Sized Photo
                                         <div class="form-group">
                                             <input type="file" #fileInput name="image" [(ngModel)]="image" required (change)="fileProgress($event)" class="form-control d-none" accept="image/*" />
                                         </div>
                                         <img [src]="previewUrl" alt="Photo " (click)="fileInput.click()" class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
                                         <mat-error *ngIf="fileInput.invalid && (fileInput.dirty || fileInput.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
 
-                                <tr>
-                                    <td>NRIC / Passport No.
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">NRIC / Passport No.
                                         <input type="text" class="form-control " name="nric" [(ngModel)]="personalDetails.nricOrPassportNumber" required #pdNric="ngModel">
                                         <mat-error *ngIf="pdNric.invalid && (pdNric.dirty || pdNric.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
                                         <p class="lead ">Gender
                                             <div class="form-check form-check-inline ">
                                                 <input class="form-check-input " type="radio" name="gender" [(ngModel)]="personalDetails.gender" required id="male" #pdGender="ngModel" value="male">
@@ -131,8 +131,8 @@
                                             </div>
                                             <mat-error *ngIf="pdGender.invalid && (pdGender.dirty || pdGender.touched)">This field is required</mat-error>
 
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
                                         <p class="lead ">Marital Status
                                             <div class="form-check form-check-inline ">
                                                 <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required id="single " #pdstatus="ngModel" value="single">
@@ -151,14 +151,14 @@
                                                 <label class="form-check-label " for="widowed ">Widowed</label>
                                             </div>
                                             <mat-error *ngIf="pdstatus.invalid && (pdstatus.dirty || pdstatus.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Citizenship
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">Citizenship
                                         <input type="text " name="citizenship" [(ngModel)]="personalDetails.citizenship" required #pdCitizenship="ngModel" class="form-control " id=" ">
                                         <mat-error *ngIf="pdCitizenship.invalid && (pdCitizenship.dirty || pdCitizenship.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">
                                         <p class="lead ">Singapore PR
                                             <div class="form-check form-check-inline ">
                                                 <input class="form-check-input " type="radio" name="pr" [(ngModel)]="personalDetails.pr" required #pdPr="ngModel" id="pryes " value="true">
@@ -170,140 +170,147 @@
                                             </div>
                                             <mat-error *ngIf="pdPr.invalid && (pdPr.dirty || pdPr.touched)">This field is required</mat-error>
 
-                                    </td>
-                                    <td *ngIf="pdPr.value == 'true'">Date Attained SPR Status
+                                    </div>
+                                    <div class="col-sm-12 col-md-4" *ngIf="pdPr.value == 'true'">Date Attained SPR Status
                                         <input type="date" name="sprDate" [(ngModel)]="personalDetails.sprDate" required id="spr " #pdSprDate="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdSprDate.invalid && (pdSprDate.dirty || pdSprDate.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Place of Birth
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">Place of Birth
                                         <input type="text" name="placeOfBirth" [(ngModel)]="personalDetails.placeOfBirth" required id="pob " #pdPob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdPob.invalid && (pdPob.dirty || pdPob.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Date of Birth
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Date of Birth
                                         <input type="date" name="dateOfBirth" [(ngModel)]="personalDetails.dateOfBirth" required id="dob " #pdDob="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdDob.invalid && (pdDob.dirty || pdDob.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Age
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Age
                                         <!-- minlength="18" -->
                                         <input type="text" name="age" [(ngModel)]="personalDetails.age" pattern="\d{2}" required id="age" #pdAge="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdAge.invalid && (pdAge.dirty || pdAge.touched)">This field is required and Age should be in 2 digits</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Race
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">Race
                                         <input type="text " name="race" [(ngModel)]="personalDetails.race" required id="race " #pdRace="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdRace.invalid && (pdRace.dirty || pdRace.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Religion
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Religion
                                         <input type="text " name="religion" [(ngModel)]="personalDetails.religion" required #pdReligion="ngModel" id="religion " class="form-control ">
                                         <mat-error *ngIf="pdReligion.invalid && (pdReligion.dirty || pdReligion.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Email Address
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Email Address
                                         <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" style="text-transform: lowercase" name="email" #pdEmail="ngModel" [(ngModel)]="personalDetails.email" required id="mail " class="form-control ">
                                         <mat-error *ngIf="pdEmail.invalid && (pdEmail.dirty || pdEmail.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2 ">NS RANK
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6">NS RANK
                                         <input type="text " name="nsRank" [(ngModel)]="personalDetails.nsRank" required id="nsrank " #pdNsRank="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdNsRank.invalid && (pdNsRank.dirty || pdNsRank.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td colspan="2 ">Medical Condition
+                                    </div>
+                                    <div class="col-sm-12 col-md-6">Medical Condition
                                         <input type="text " name="medicalCondition" [(ngModel)]="personalDetails.medicalCondition" required #pdMedicalCondition="ngModel" id="medical " class="form-control ">
                                         <mat-error *ngIf="pdMedicalCondition.invalid && (pdMedicalCondition.dirty || pdMedicalCondition.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
 
-                                <tr>
-                                    <td colspan="4 ">Current Address
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12">Current Address
                                         <input type="text " name="currentAddress" [(ngModel)]="personalDetails.currentAddress" required id="address1 " #pdCurrentAddress="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdCurrentAddress.invalid && (pdCurrentAddress.dirty || pdCurrentAddress.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="4 ">Overseas Address
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">Overseas Address
                                         <input type="text " name="overseasAddress" [(ngModel)]="personalDetails.overseasAddress" required id="address2 " #pdOverseasAddress="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdOverseasAddress.invalid && (pdOverseasAddress.dirty || pdOverseasAddress.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Contact No:</td>
-                                    <td>Mobile
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4">Contact No:
+                                   <!--  <td>Mobile -->
                                         <input type="number " name="mobileContact" [(ngModel)]="personalDetails.mobileContact" pattern="\d{8}" required id="address1 " #pdMobileContact="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdMobileContact.invalid && (pdMobileContact.dirty || pdMobileContact.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Home
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Home
                                         <input type="number " name="homeContact" [(ngModel)]="personalDetails.homeContact" pattern="\d{8}" required id="address1 " #pdHomeContact="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdHomeContact.invalid && (pdHomeContact.dirty || pdHomeContact.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>Office
+                                    </div>
+                                    <div class="col-sm-12 col-md-4">Office
                                         <input type="number " name="officeContact" [(ngModel)]="personalDetails.officeContact" pattern="\d{8}" required id="address1 " #pdOfficeContact="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdOfficeContact.invalid && (pdOfficeContact.dirty || pdOfficeContact.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            <!-- </table> -->
                         </div>
                     </div>
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='bd' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Bank Details</div>
-                        <div class="table-responsive ">
-                            <table class="table ">
-                                <tr>
-                                    <th>Account No.</th>
-                                    <th>Bank</th>
-                                </tr>
-
-                                <tr>
-                                    <td><input type="text " name="accountNumber" [(ngModel)]="candidate.accountNumber" required id=" " #pdAccountNumber="ngModel" class="form-control ">
+                        <div class=".container-fluid">
+                            <!-- <table class="table "> -->
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3 ">Account No.</div>
+                                    <div class="col-sm-12 col-md-9 "><input type="text " name="accountNumber" [(ngModel)]="candidate.accountNumber" required id=" " #pdAccountNumber="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdAccountNumber.invalid && (pdAccountNumber.dirty || pdAccountNumber.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="bank" [(ngModel)]="candidate.bank" required #pdBank="ngModel" class="form-control ">
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3">Bank</div>
+                                    <div class="col-sm-12 col-md-9 "><input type="text " name="bank" [(ngModel)]="candidate.bank" required #pdBank="ngModel" class="form-control ">
                                         <mat-error *ngIf="pdBank.invalid && (pdBank.dirty || pdBank.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            <!-- </table> -->
                         </div>
                     </div>
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='fp' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Family Particulars</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="familyTable ">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Relationship</th>
-                                    <th>Age</th>
-                                    <th>Gender</th>
-                                    <th>Occupation</th>
-                                    <td>Delete</td>
-                                </tr>
+                        <div class="container-fluid">
+                            <div id="familyTable">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">Name</div>
+                                    <div class="col-md-2">Relationship</div>
+                                    <div class="col-md-2">Age</div>
+                                    <div class="col-md-2">Gender</div>
+                                    <div class="col-md-2">Occupation</div>
+                                    <div class="col-md-2">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let fd of familyDetails let i = index">
+                                <div class="row" *ngFor="let fd of familyDetails let i = index">
                                     <input type="hidden" name="id" [(ngModel)]="familyDetails[i].id" value="fd.id" />
-                                    <td><input type="text " name="name({{i}})" [(ngModel)]="familyDetails[i].name" required id=" " #fdName="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2 d-md-none">Name</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="name({{i}})" [(ngModel)]="familyDetails[i].name" required id=" " #fdName="ngModel" class="form-control ">
                                         <mat-error *ngIf="fdName.invalid && (fdName.dirty || fdName.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="relationship{{i}})" [(ngModel)]="familyDetails[i].relationship" required id=" " #fdRelationship="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Relationship</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="relationship{{i}})" [(ngModel)]="familyDetails[i].relationship" required id=" " #fdRelationship="ngModel" class="form-control ">
                                         <mat-error *ngIf="fdRelationship.invalid && (fdRelationship.dirty || fdRelationship.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="age({{i}})" [(ngModel)]="familyDetails[i].age" pattern="\d{2}" required id=" " #fdAge="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Age</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="age({{i}})" [(ngModel)]="familyDetails[i].age" pattern="\d{2}" required id=" " #fdAge="ngModel" class="form-control ">
                                         <mat-error *ngIf="fdAge.invalid && (fdAge.dirty || fdAge.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="gender({{i}})" [(ngModel)]="familyDetails[i].gender" required id=" " #fdGender="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Gender</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="gender({{i}})" [(ngModel)]="familyDetails[i].gender" required id=" " #fdGender="ngModel" class="form-control ">
                                         <mat-error *ngIf="fdGender.invalid && (fdGender.dirty || fdGender.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="occupation({{i}})" [(ngModel)]="familyDetails[i].occupation" required id=" " #fdOccupation="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Occupation</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="occupation({{i}})" [(ngModel)]="familyDetails[i].occupation" required id=" " #fdOccupation="ngModel" class="form-control ">
                                         <mat-error *ngIf="fdOccupation.invalid && (fdOccupation.dirty || fdOccupation.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeFamilyMember(i,fd.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                    </td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-2"><button type="button" class="close cancel" (click)="removeFamilyMember(i,fd.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
 
 
-                            </table>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addFamilyMember()">Add Member</button>
@@ -313,34 +320,40 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='eb' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Educational Background</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="eduTable ">
-                                <tr>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Name of Institution</th>
-                                    <th>Qualification Obtained</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid ">
+                            <div id="eduTable ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">From</div>
+                                    <div class="col-md-2">To</div>
+                                    <div class="col-md-3">Name of Institution</div>
+                                    <div class="col-md-3">Qualification Obtained</div>
+                                    <div class="col-md-2">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let edu of educations let i = index">
+                                <div class="row" *ngFor="let edu of educations let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="educations[i].id" value="edu.id" />
-                                    <td><input type="date" name="from({{i}})" [(ngModel)]="educations[i].from" required id=" " #eduFrom="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2 d-md-none">From</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="from({{i}})" [(ngModel)]="educations[i].from" required id=" " #eduFrom="ngModel" class="form-control ">
                                         <mat-error *ngIf="eduFrom.invalid && (eduFrom.dirty || eduFrom.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="date" name="to({{i}})" [(ngModel)]="educations[i].to" required id=" " #eduTo="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">To</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="to({{i}})" [(ngModel)]="educations[i].to" required id=" " #eduTo="ngModel" class="form-control ">
                                         <mat-error *ngIf="eduTo.invalid && (eduTo.dirty || eduTo.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="institution({{i}})" [(ngModel)]="educations[i].institution" #eduInstitution="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Name of Institution</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text " name="institution({{i}})" [(ngModel)]="educations[i].institution" #eduInstitution="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="eduInstitution.invalid && (eduInstitution.dirty || eduInstitution.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="qualification({{i}})" [(ngModel)]="educations[i].qualification" #eduQualification="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Qualification Obtained</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text " name="qualification({{i}})" [(ngModel)]="educations[i].qualification" #eduQualification="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="eduQualification.invalid && (eduQualification.dirty || eduQualification.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeEducation(i,edu.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-2"><button type="button" class="close cancel" (click)="removeEducation(i,edu.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
 
-                            </table>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addEducation()">Add More</button>
@@ -348,49 +361,57 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='eh' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Employment History (state the most recent first)</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="historyTable ">
-                                <tr>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Name of Employer</th>
-                                    <th>Last Drawn Basic Salary/</th>
-                                    <th>Job Title</th>
-                                    <th rowspan="2 ">Reason for Leaving</th>
-                                </tr>
-                                <tr>
-                                    <th>(mm/yy)</th>
-                                    <th>(mm/yy)</th>
-                                    <th>Address of Employer</th>
-                                    <th>Allowance / Bonus</th>
-                                    <th>Brief Job Description</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid ">
+                            <div  id="historyTable ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">From</div>
+                                    <div class="col-md-2">To</div>
+                                    <div class="col-md-2">Name of Employer</div>
+                                    <div class="col-md-2">Last Drawn Basic Salary/</div>
+                                    <div class="col-md-2">Job Title</div>
+                                    <div class="col-md-2">Reason for Leaving</div>
+                                </div>
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">(mm/yy)</div>
+                                    <div class="col-md-2">(mm/yy)</div>
+                                    <div class="col-md-2">Address of Employer</div>
+                                    <div class="col-md-2">Allowance / Bonus</div>
+                                    <div class="col-md-2">Brief Job Description</div>
+                                    <div class="col-md-2">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let eh of employmentHistories let i = index">
+                                <div class="row" *ngFor="let eh of employmentHistories let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="employmentHistories[i].id" value="eh.id" />
-                                    <td><input type="date" name="from({{i}})" [(ngModel)]="employmentHistories[i].from" required id=" " #ehFrom="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2 d-md-none">From</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="from({{i}})" [(ngModel)]="employmentHistories[i].from" required id=" " #ehFrom="ngModel" class="form-control ">
                                         <mat-error *ngIf="ehFrom.invalid && (ehFrom.dirty || ehFrom.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="date" name="to({{i}})" [(ngModel)]="employmentHistories[i].to" required id=" " #ehTo="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">To</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="to({{i}})" [(ngModel)]="employmentHistories[i].to" required id=" " #ehTo="ngModel" class="form-control ">
                                         <mat-error *ngIf="ehTo.invalid && (ehTo.dirty || ehTo.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="employerInfo({{i}}) " [(ngModel)]="employmentHistories[i].employerInfo" #ehEmployerInfo="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Name Of Employer</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="employerInfo({{i}}) " [(ngModel)]="employmentHistories[i].employerInfo" #ehEmployerInfo="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="ehEmployerInfo.invalid && (ehEmployerInfo.dirty || ehEmployerInfo.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="salaryInfo({{i}}) " [(ngModel)]="employmentHistories[i].salaryInfo" #ehSalaryInfo="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-1 d-md-none">Last Drawn Basic Salary</div>
+                                    <div class="col-sm-12 col-md-1"><input type="text " name="salaryInfo({{i}}) " [(ngModel)]="employmentHistories[i].salaryInfo" #ehSalaryInfo="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="ehSalaryInfo.invalid && (ehSalaryInfo.dirty || ehSalaryInfo.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="jobDescription({{i}}) " [(ngModel)]="employmentHistories[i].jobDescription" #ehJobDescription="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Job Title</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="jobDescription({{i}}) " [(ngModel)]="employmentHistories[i].jobDescription" #ehJobDescription="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="ehJobDescription.invalid && (ehJobDescription.dirty || ehJobDescription.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="reasonForLeaving({{i}}) " [(ngModel)]="employmentHistories[i].reasonForLeaving" #ehReasonForLeaving="ngModel" required id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Reason For Leaving</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="reasonForLeaving({{i}}) " [(ngModel)]="employmentHistories[i].reasonForLeaving" #ehReasonForLeaving="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="ehReasonForLeaving.invalid && (ehReasonForLeaving.dirty || ehReasonForLeaving.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeHistory(i,eh.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-1 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-1"><button type="button" class="close cancel" (click)="removeHistory(i,eh.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
 
-                            </table>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addHistory()">Add More</button>
@@ -398,22 +419,24 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='lp' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Language Proficiency</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="langTable ">
-                                <tr>
-                                    <th>Language</th>
-                                    <th>Spoken</th>
-                                    <th>Reading</th>
-                                    <th>Written</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid ">
+                            <div id="langTable ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-3">Language</div>
+                                    <div class="col-md-2">Spoken</div>
+                                    <div class="col-md-2">Reading</div>
+                                    <div class="col-md-2">Written</div>
+                                    <div class="col-md-3">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let lang of languages let i = index">
+                                <div class="row" *ngFor="let lang of languages let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="languages[i].id" value="lang.id" />
-                                    <td><input type="text " name="name({{i}})" [(ngModel)]="languages[i].name" required id=" " #lName="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-3 d-md-none">Language</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text " name="name({{i}})" [(ngModel)]="languages[i].name" required id=" " #lName="ngModel" class="form-control ">
                                         <mat-error *ngIf="lName.invalid && (lName.dirty || lName.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Spoken</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio" name="spoken({{i}})" [(ngModel)]="languages[i].spoken" #lSpoken="ngModel" required id="s_excellent({{i}})" value="excellent">
                                             <label class="form-check-label " for="s_excellent({{i}})">Excellent  </label>
@@ -428,8 +451,9 @@
                                         </div>
                                         <mat-error *ngIf="lSpoken.invalid && (lSpoken.dirty || lSpoken.touched)">This field is required</mat-error>
 
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Reading</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio" name="reading({{i}})" [(ngModel)]="languages[i].reading" #lReading="ngModel" required id="f_excellent({{i}})" value="excellent">
                                             <label class="form-check-label " for="f_excellent({{i}})">Excellent  </label>
@@ -443,8 +467,9 @@
                                             <label class="form-check-label " for="f_poor({{i}})"> Poor</label>
                                         </div>
                                         <mat-error *ngIf="lReading.invalid && (lReading.dirty || lReading.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Written</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <div class="form-check form-check-inline ">
                                             <input class="form-check-input " type="radio" name="writing({{i}})" [(ngModel)]="languages[i].writing" #lWriting="ngModel" required id="w_excellent({{i}})" value="excellent">
                                             <label class="form-check-label " for="w_excellent({{i}})">Excellent  </label>
@@ -458,11 +483,13 @@
                                             <label class="form-check-label " for="w_poor({{i}})"> Poor</label>
                                         </div>
                                         <mat-error *ngIf="lWriting.invalid && (lWriting.dirty || lWriting.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeLanguage(i,lang.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-3"><button type="button" class="close cancel" (click)="removeLanguage(i,lang.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
 
-                                </tr>
-                            </table>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addLanguage()">Add More</button>
@@ -471,42 +498,48 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='cp' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Computer Proficiency (indicate proficiency with a tick)</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="tableComputerProf ">
-                                <tr>
-                                    <th></th>
-                                    <th> Advance</th>
-                                    <th> Intermediate </th>
-                                    <th> Beginers</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid ">
+                            <div id="tableComputerProf ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-2"> Advance</div>
+                                    <div class="col-md-2"> Intermediate </div>
+                                    <div class="col-md-2"> Beginers</div>
+                                    <div class="col-md-2">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let cp of computerProficiencies let i = index">
+                                <div class="row" *ngFor="let cp of computerProficiencies let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="computerProficiencies[i].id" value="cp.id" />
-                                    <td><input type="text " name="name({{i}})" [(ngModel)]="computerProficiencies[i].name" #cpName="ngModel" required id=" " class="form-control ">
+                                    <div class="col-sm-12 col-md-4 d-md-none">Proficiency</div>
+                                    <div class="col-sm-12 col-md-4"><input type="text " name="name({{i}})" [(ngModel)]="computerProficiencies[i].name" #cpName="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="cpName.invalid && (cpName.dirty || cpName.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Advance</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <label class="checkbox-inline ">
                                         <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required #cpLevel="ngModel" value = "advance"> 
                                     </label>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Intermediate</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <label class="checkbox-inline ">
                                             <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required #cpLevel="ngModel" value = "intermediate"> 
                                         </label>
-                                    </td>
-                                    <td>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Beginers</div>
+                                    <div class="col-sm-12 col-md-2">
                                         <label class="checkbox-inline ">
                                             <input type = "radio" id = "ad1 " name="level({{i}})" [(ngModel)]="computerProficiencies[i].level" required  #cpLevel="ngModel" value = "beginner"> 
                                         </label>
-                                    </td>
-                                    <mat-error *ngIf="cpLevel.invalid && (cpLevel.dirty || cpLevel.touched)">This field is required</mat-error>
+                                        <mat-error *ngIf="cpLevel.invalid && (cpLevel.dirty || cpLevel.touched)">This field is required</mat-error>
+                                    </div>
 
-                                    <td><button type="button" class="close cancel" (click)="removeComputerProficiency(i,cp.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Advance</div>
+                                    <div class="col-sm-12 col-md-2"><button type="button" class="close cancel" (click)="removeComputerProficiency(i,cp.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
 
-                                </tr>
-                            </table>
+                                </div>
+                            </div>
                             <br>
                             <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addComputerProficiency()">Add More</button>
                         </div>
@@ -514,34 +547,40 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='ms' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Membership of Societies, Clubs and Associations</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="membershipTable ">
-                                <tr>
-                                    <th>From</th>
-                                    <th>To</th>
-                                    <th>Name of Societies /Clubs / Associations</th>
-                                    <th>Position Held</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid">
+                            <div id="membershipTable ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">From</div>
+                                    <div class="col-md-2">To</div>
+                                    <div class="col-md-4">Name of Societies /Clubs / Associations</div>
+                                    <div class="col-md-3">Position Held</div>
+                                    <div class="col-md-1">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let m of memberships let i = index">
+                                <div class="row" *ngFor="let m of memberships let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="memberships[i].id" value="m.id" />
-                                    <td><input type="date" name="from({{i}})" [(ngModel)]="memberships[i].from" required id=" " #mFrom="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2 d-md-none">From</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="from({{i}})" [(ngModel)]="memberships[i].from" required id=" " #mFrom="ngModel" class="form-control ">
                                         <mat-error *ngIf="mFrom.invalid && (mFrom.dirty || mFrom.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="date" name="to({{i}})" [(ngModel)]="memberships[i].to" required id=" " #mTo="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">To</div>
+                                    <div class="col-sm-12 col-md-2"><input type="date" name="to({{i}})" [(ngModel)]="memberships[i].to" required id=" " #mTo="ngModel" class="form-control ">
                                         <mat-error *ngIf="mTo.invalid && (mTo.dirty || mTo.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="name({{i}})" [(ngModel)]="memberships[i].name" required #mName="ngModel" id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 d-md-none">Name of Societies /Clubs </div>
+                                    <div class="col-sm-12 col-md-4"><input type="text " name="name({{i}})" [(ngModel)]="memberships[i].name" required #mName="ngModel" id=" " class="form-control ">
                                         <mat-error *ngIf="mName.invalid && (mName.dirty || mName.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="position({{i}})" [(ngModel)]="memberships[i].position" required #mPosition="ngModel" id=" " class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Position Held </div>
+                                    <div class="col-sm-12 col-md-3"><input type="text " name="position({{i}})" [(ngModel)]="memberships[i].position" required #mPosition="ngModel" id=" " class="form-control ">
                                         <mat-error *ngIf="mPosition.invalid && (mPosition.dirty || mPosition.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeMembership(i,m.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-1 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-1"><button type="button" class="close cancel" (click)="removeMembership(i,m.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
 
-                            </table>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addMembership()">Add More</button>
@@ -549,38 +588,45 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='cr' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Character References</div>
-                        <div class="table-responsive ">
-                            <table class="table " id="refTable ">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Company Name</th>
-                                    <th>Years Known</th>
-                                    <th>Contact No.</th>
-                                    <th>Delete</th>
-                                </tr>
+                        <div class="container-fluid ">
+                            <div id="refTable ">
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-2">Name</div>
+                                    <div class="col-md-2">Position</div>
+                                    <div class="col-md-2">Company Name</div>
+                                    <div class="col-md-2">Years Known</div>
+                                    <div class="col-md-2">Contact No.</div>
+                                    <div class="col-md-2">Delete</div>
+                                </div>
 
-                                <tr *ngFor="let ref of references let i = index">
+                                <div class="row" *ngFor="let ref of references let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="references[i].id" value="ref.id" />
-                                    <td><input type="text " name="name({{i}})" [(ngModel)]="references[i].name" required id=" " #rName="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2 d-md-none">Name</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="name({{i}})" [(ngModel)]="references[i].name" required id=" " #rName="ngModel" class="form-control ">
                                         <mat-error *ngIf="rName.invalid && (rName.dirty || rName.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="position({{i}})" [(ngModel)]="references[i].position" required id=" " #rPosition="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Position</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="position({{i}})" [(ngModel)]="references[i].position" required id=" " #rPosition="ngModel" class="form-control ">
                                         <mat-error *ngIf="rPosition.invalid && (rPosition.dirty || rPosition.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="company({{i}})" [(ngModel)]="references[i].company" required id=" " #rCompany="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Company Name</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="company({{i}})" [(ngModel)]="references[i].company" required id=" " #rCompany="ngModel" class="form-control ">
                                         <mat-error *ngIf="rCompany.invalid && (rCompany.dirty || rCompany.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="yearsKnown({{i}})" [(ngModel)]="references[i].yearsKnown" required id=" " #rYearsKnown="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Years Known</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="yearsKnown({{i}})" [(ngModel)]="references[i].yearsKnown" required id=" " #rYearsKnown="ngModel" class="form-control ">
                                         <mat-error *ngIf="rYearsKnown.invalid && (rYearsKnown.dirty || rYearsKnown.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text " name="contact({{i}})" [(ngModel)]="references[i].contact" required pattern="\d{8}" id=" " #rContact="ngModel" class="form-control ">
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Contact No.</div>
+                                    <div class="col-sm-12 col-md-2"><input type="text " name="contact({{i}})" [(ngModel)]="references[i].contact" required pattern="\d{8}" id=" " #rContact="ngModel" class="form-control ">
                                         <mat-error *ngIf="rContact.invalid && (rContact.dirty || rContact.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><button type="button" class="close cancel" (click)="removeReference(i,ref.id)"><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-2 d-md-none">Delete</div>
+                                    <div class="col-sm-12 col-md-2"><button type="button" class="close cancel" (click)="removeReference(i,ref.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    </div>
+                                </div>
 
-                            </table>
+                            </div>
                         </div>
                         <br>
                         <button type="button" class="btn btn-dark mb-2 hidden-print " style="float: right; " (click)="addReference()">Add More</button>
@@ -590,48 +636,54 @@
 
                     <div class="panel panel-success bg-light mt-2 " *ngIf="currentPanel=='ra' ">
                         <div class="panel-heading font-weight-bold bg-secondary p-2 ">Remuneration and Availability</div>
-                        <div class="table-responsive ">
-                            <table class="table ">
-                                <tr>
-                                    <th>Expected Salary</th>
-                                    <th>Current Salary</th>
-                                    <th>AWS / Variable Bonus</th>
-                                    <th>Allowance (Please specify)</th>
-                                </tr>
+                        <div class="container-fluid">
+                           <!--  <table class="table "> -->
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-3">Expected Salary</div>
+                                    <div class="col-md-3">Current Salary</div>
+                                    <div class="col-md-3">AWS / Variable Bonus</div>
+                                    <div class="col-md-3">Allowance (Please specify)</div>
+                                </div>
 
-                                <tr>
-                                    <td><input type="text" class="form-control input-sm" name="expectedSalary" [(ngModel)]="candidate.expectedSalary" #expectedSalary="ngModel" required>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-3 d-md-none">Expected Salary</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="expectedSalary" [(ngModel)]="candidate.expectedSalary" #expectedSalary="ngModel" required>
                                         <mat-error *ngIf="expectedSalary.invalid && (expectedSalary.dirty || expectedSalary.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text" class="form-control input-sm" name="currentSalary" [(ngModel)]="candidate.currentSalary" #currentSalary="ngModel" required>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Current Salary</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="currentSalary" [(ngModel)]="candidate.currentSalary" #currentSalary="ngModel" required>
                                         <mat-error *ngIf="currentSalary.invalid && (currentSalary.dirty || currentSalary.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text" class="form-control input-sm" name="bonus" [(ngModel)]="candidate.bonus" #bonus="ngModel" required>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">AWS / Variable Bonus</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="bonus" [(ngModel)]="candidate.bonus" #bonus="ngModel" required>
                                         <mat-error *ngIf="bonus.invalid && (bonus.dirty || bonus.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="text" class="form-control input-sm" name="allowance" [(ngModel)]="candidate.allowance" #allowance="ngModel" required>
+                                    </div>
+                                    <div class="col-sm-12 col-md-3 d-md-none">Allowance (Please specify)</div>
+                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="allowance" [(ngModel)]="candidate.allowance" #allowance="ngModel" required>
                                         <mat-error *ngIf="allowance.invalid && (allowance.dirty || allowance.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
-                            </table>
+                                    </div>
+                                </div>
+                            <!-- </table> -->
                         </div>
                         <br>
-                        <div class="table-responsive ">
-                            <table class="table ">
-                                <tr>
-                                    <th>Notice Period</th>
-                                    <th>Earliest Available Date</th>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" class="form-control input-sm" name="noticePeriod" [(ngModel)]="candidate.noticePeriod" #noticePeriod="ngModel" required>
+                        <div class="container-fluid">
+                            <!-- <table class="table "> -->
+                                <div class="row d-none d-md-flex">
+                                    <div class="col-md-6">Notice Period</div>
+                                    <div class="col-md-6">Earliest Available Date</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 d-md-none">Notice Period</div>
+                                    <div class="col-sm-12 col-md-6"><input type="text" class="form-control input-sm" name="noticePeriod" [(ngModel)]="candidate.noticePeriod" #noticePeriod="ngModel" required>
                                         <mat-error *ngIf="noticePeriod.invalid && (noticePeriod.dirty || noticePeriod.touched)">This field is required</mat-error>
-                                    </td>
-                                    <td><input type="date" class="form-control input-sm" name="availableDate" [(ngModel)]="candidate.availableDate" #availableDate="ngModel" required>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 d-md-none">Earliest Available Date</div>
+                                    <div class="col-sm-12 col-md-6"><input type="date" class="form-control input-sm" name="availableDate" [(ngModel)]="candidate.availableDate" #availableDate="ngModel" required>
                                         <mat-error *ngIf="availableDate.invalid && (availableDate.dirty || availableDate.touched)">This field is required</mat-error>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
 
-                            </table>
+                            <!-- </table> -->
                         </div>
                     </div>
 
@@ -898,34 +950,34 @@
                             <span class="col-sm-12 col-md-2 ">4 = slightly agree</span>
                             <span class="col-sm-12 col-md-2 ">5 = agree</span>
                         </div>
-                        <div class="table-responsive ">
-                            <table class="table " id="TableQuestions ">
-                                <tbody>
-                                    <tr>
-                                        <th>S/N</th>
-                                        <th>Rating</th>
-                                        <th>Question ( I.....) </th>
-                                    </tr>
-                                </tbody>
-                                <tr *ngFor="let rd of ratingData let i=index">
-                                    <td>{{i+1}}</td>
-                                    <td>
+                        <div class="container-fluid">
+                            <div id="TableQuestions ">
+                                <!-- <tbody> -->
+                                    <div class="row d-none d-md-flex">
+                                        <div class="col-sm-2">S/N</div>
+                                        <div class="col-md-4 col-sm-8">Rating</div>
+                                        <div class="col-sm-12 col-md-6 ">Question ( I.....) </div>
+                                    </div>
+                                <!-- </tbody> -->
+                                <div class="row" *ngFor="let rd of ratingData let i=index">
+                                    <div class="col-sm-2">{{i+1}}</div>
+                                    <div class="col-sm-8 col-md-4">
                                         <mat-star-rating [rating]="rating[i]" [index]="i" [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
-                                    </td>
-                                    <td>{{rd}}</td>
-                                </tr>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 ">{{rd}}</div>
+                                </div>
 
-                            </table>
+                            </div>
                         </div>
                     </div>
                     <div class="jumbotron p-5 mt-2 w-100 text-center ">
 
                         <span style="float: left; ">
-                            <button type="button" class="btn btn-outline-dark px-4 " (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
+                            <button type="button" class="btn btn-outline-dark px-4 mb-2" (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
                         </span>
-                        <button type="submit" class="btn btn-outline-dark px-4 mr-4 " *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid || ratingQuestionsSize<=0">Submit</button>
-                        <button type="button" class="btn btn-outline-dark px-4 ">Cancel</button>
-                        <button type="button" class="btn btn-outline-dark px-4 " style="float: right; " (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
+                        <button type="submit" class="btn btn-outline-dark px-4 mr-4 mb-2" *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid || ratingQuestionsSize<=0">Submit</button>
+                        <button type="button" class="btn btn-outline-dark px-4 mb-2">Cancel</button><!-- [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)" -->
+                        <button type="button" class="btn btn-outline-dark px-4 mb-2" style="float: right; " (click)="onNext(panelIndex)" >Next</button>
 
                     </div>
                 </form>
