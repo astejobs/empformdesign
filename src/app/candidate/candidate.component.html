@@ -976,8 +976,8 @@
                             <button type="button" class="btn btn-outline-dark px-4 mb-2" (click)="onPrevious(panelIndex)" [disabled]="panelIndex <= 0">Previous</button>
                         </span>
                         <button type="submit" class="btn btn-outline-dark px-4 mr-4 mb-2" *ngIf="panelIndex+1 >= panels.length" [disabled]="!myForm.valid || ratingQuestionsSize<=0">Submit</button>
-                        <button type="button" class="btn btn-outline-dark px-4 mb-2">Cancel</button><!-- [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)" -->
-                        <button type="button" class="btn btn-outline-dark px-4 mb-2" style="float: right; " (click)="onNext(panelIndex)" >Next</button>
+                        <button type="button" class="btn btn-outline-dark px-4 mb-2">Cancel</button><!--  -->
+                        <button type="button" class="btn btn-outline-dark px-4 mb-2" style="float: right; " (click)="onNext(panelIndex)" [disabled]="!myForm.valid || (panelIndex+1 >= panels.length)">Next</button>
 
                     </div>
                 </form>
