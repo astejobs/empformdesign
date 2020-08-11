@@ -23,6 +23,7 @@ import { EmpListComponent } from './emp-list/emp-list.component';
 import { MatMenuModule } from '@angular/material/menu'
 import { AuthInterceptor } from './auth-interceptor.interceptor';
 import { ReviewComponent } from './review/review.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +33,8 @@ import { ReviewComponent } from './review/review.component';
     LoginDialogComponent, 
     AssessmentComponent,
     EmpListComponent,
-    ReviewComponent
+    ReviewComponent,
+    DashboardComponent
   ], 
   imports: [
     BrowserModule,
