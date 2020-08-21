@@ -24,6 +24,7 @@ import { MatMenuModule } from '@angular/material/menu'
 import { AuthInterceptor } from './auth-interceptor.interceptor';
 import { ReviewComponent } from './review/review.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +35,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     AssessmentComponent,
     EmpListComponent,
     ReviewComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConfirmDialogComponent
   ], 
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         {provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true},
   ], 
   bootstrap: [AppComponent],
-  entryComponents: [LoginDialogComponent]
+  entryComponents: [LoginDialogComponent, ConfirmDialogComponent]
 })
 
 export class AppModule { }

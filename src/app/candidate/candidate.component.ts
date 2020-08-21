@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 
 import { StarRatingColor } from '../star-rating/star-rating.component';
 import { GeneralService } from '../general.service';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-candidate',
@@ -11,7 +13,7 @@ import { GeneralService } from '../general.service';
 })
 export class CandidateComponent implements OnInit {
 
-  constructor(private generalService:GeneralService) { }
+  constructor(private generalService:GeneralService, private dialog: MatDialog) { }
   rating = [];
   starCount:number = 5;
   starColor:StarRatingColor = StarRatingColor.accent;
@@ -19,6 +21,8 @@ export class CandidateComponent implements OnInit {
   starColorW:StarRatingColor = StarRatingColor.warn;
   fileData: File = null;
   previewUrl:any = '/assets/images/image-picker.png';
+  stepErrors = false;
+  submitted = true;
   @ViewChild('myForm') myForm:NgForm;
 
   
@@ -98,6 +102,8 @@ export class CandidateComponent implements OnInit {
       this.computerProficiencies.push(new Object());
       this.memberships.push(new Object());
       this.references.push(new Object());
+      this.references.push(new Object());
+      this.languages.push(new Object());
   }
  
   onSubmitForm(){
@@ -127,12 +133,29 @@ export class CandidateComponent implements OnInit {
               this.showErrorMessage('Something went wrong.Please try again')
             }
       });
+    
     }
  
 
   onNext(index){
+    if(this.validationCheck())
+    {
+      return; 
+    }
+    else{
       this.panelIndex++;
       this.currentPanel = this.panels[+index+1];
+    }
+  }
+  validationCheck() {
+    if(this.myForm.invalid) {
+      this.stepErrors = true;
+      return true;
+    } 
+    else {
+      this.stepErrors = false;
+      return false;
+    }
   }
 
   onPrevious(index){
@@ -241,5 +264,45 @@ export class CandidateComponent implements OnInit {
     this.showSucessMsg=false;
     this.showErrorMsg=true;
     this.errorMsg=msg;
+  }
+
+  openDialogCancel() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        message: 'Are you sure want to Cancel?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+   
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        console.log('Cancelled');
+        this.myForm.resetForm();
+        this.currentPanel = 'start';
+        this.panelIndex=0;
+      }
+    });
+  }
+  openDialogSubmit() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent,{
+      data:{
+        message: 'Click Yes to Submit the Form, Please Check details before proceeding?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+   
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+       this.onSubmitForm();
+      }
+    });
   }
 }
