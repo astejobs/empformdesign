@@ -73,14 +73,15 @@
                                                 <input class="form-check-input" type="radio" name="referral" [(ngModel)]="candidate.referral" required #referral="ngModel" id="inlineRadio8" value="false">
                                                 <label class="form-check-label" for="inlineRadio8">No</label>
                                             </div>
-                                            <mat-error *ngIf="referral.invalid && (referral.dirty || referral.touched)">This field is required</mat-error>
+                                            <mat-error *ngIf="referral.invalid && stepErrors">This field is required</mat-error>
+
 
                                             <div id="referals" class="row" *ngIf="referral.value == 'true'">
                                                 <div class=" col-md-4 ">Name : <input type="text " class="form-control " name="referralName " [(ngModel)]="referralEmployee.name " required #refName="ngModel">
-                                                    <mat-error *ngIf="refName.invalid && (refName.dirty || refName.touched)">This field is required</mat-error>
+                                                    <mat-error *ngIf="refName.invalid && stepErrors">This field is required</mat-error>
                                                 </div>
                                                 <div class="col-md-4 "> Department :<input type="text " class="form-control " name="referralDepartment " [(ngModel)]="referralEmployee.department " required #refDepartment="ngModel">
-                                                    <mat-error *ngIf="refDepartment.invalid && (refDepartment.dirty || refDepartment.touched)">This field is required</mat-error>
+                                                    <mat-error *ngIf="refDepartment.invalid && stepErrors">This field is required</mat-error>
                                                 </div>
                                                 <div class="col-md-4 "> Relationship : <input type="text " class="form-control " name="referralRelationship " [(ngModel)]="referralEmployee.relationship " required #refRelationship="ngModel">
                                                     <mat-error *ngIf="refRelationship.invalid && stepErrors">This field is required</mat-error>
@@ -187,9 +188,9 @@
                                     </div>
                                     <div class="col-sm-12 col-md-4">Age<span class="text-danger">*</span>
                                         <!-- minlength="18" -->
-                                        <input type="text" name="age" [(ngModel)]="personalDetails.age" pattern="\d{2}" required id="age" #pdAge="ngModel" class="form-control ">
-                                        <mat-error *ngIf="pdAge.invalid && stepErrors">This field is required and Age should be in 2 digits</mat-error>
-                                    </div>
+                                        <input type="number" name="age" [(ngModel)]="personalDetails.age" pattern="\d{2}" value="{{ myAgeFunction(personalDetails.dateOfBirth) }}" #pdAge="ngModel" class="form-control" readonly>
+                                       <!--<mat-error *ngIf="pdAge.invalid && stepErrors">This field is required and Age should be in 2 digits</mat-error>
+                                -->     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-4">Race<span class="text-danger">*</span>
@@ -293,8 +294,9 @@
                                         <mat-error *ngIf="fdRelationship.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-2 d-md-none">Age<span class="text-danger">*</span></div>
-                                    <div class="col-sm-12 col-md-2"><input type="text " name="age({{i}})" [(ngModel)]="familyDetails[i].age" pattern="\d{2}" required id=" " #fdAge="ngModel" class="form-control ">
-                                        <mat-error *ngIf="fdAge.invalid && stepErrors">This field is required</mat-error>
+                                    <div class="col-sm-12 col-md-2"><input type="number " name="age({{i}})" [(ngModel)]="familyDetails[i].age" pattern="\d{2}" required id=" " #fdAge="ngModel" class="form-control ">
+                                        <mat-error *ngIf="fdAge.invalid && stepErrors ">Enter valid input</mat-error>   
+
                                     </div>
                                     <div class="col-sm-12 col-md-2 d-md-none">Gender<span class="text-danger">*</span></div>
                                     <div class="col-sm-12 col-md-2">
@@ -402,7 +404,7 @@
                                         <mat-error *ngIf="ehEmployerInfo.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-1 d-md-none">Last Drawn Basic Salary<span class="text-danger">*</span></div>
-                                    <div class="col-sm-12 col-md-2"><input type="text " name="salaryInfo({{i}}) " [(ngModel)]="employmentHistories[i].salaryInfo" #ehSalaryInfo="ngModel" required id=" " class="form-control ">
+                                    <div class="col-sm-12 col-md-2"><input type="number"  min=0 name="salaryInfo({{i}}) " [(ngModel)]="employmentHistories[i].salaryInfo" #ehSalaryInfo="ngModel" required id=" " class="form-control ">
                                         <mat-error *ngIf="ehSalaryInfo.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-2 d-md-none">Job Title<span class="text-danger">*</span></div>
@@ -565,8 +567,8 @@
                                     <div class="col-md-2">To<span class="text-danger">*</span></div>
                                     <div class="col-md-4">Name of Societies /Clubs / Associations<span class="text-danger">*</span></div>
                                     <div class="col-md-3">Position Held<span class="text-danger">*</span></div>
-                                    <div class="col-md-1">Delete</div>
-                                </div>
+                                   <div class="col-md-1">Delete</div>
+                                    </div>
 
                                 <div class="row" *ngFor="let m of memberships let i = index">
                                     <input type="hidden" name="id({{i}})" [(ngModel)]="memberships[i].id" value="m.id" />
@@ -587,8 +589,10 @@
                                         <mat-error *ngIf="mPosition.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-1 d-md-none">Delete</div>
-                                    <div class="col-sm-12 col-md-1"><button type="button" style="float: left;" class="close cancel ml-2 mt-3" (click)="removeMembership(i,m.id)"><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                    <div class="col-sm-12 col-md-1">
+                                        <button type="button" style="float: left;" class="close cancel ml-2 mt-3" (click)="removeMembership(i,m.id)" *ngIf="i >= 1" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </div>
+                                   
                                 </div>
 
                             </div>
@@ -625,7 +629,7 @@
                                         <mat-error *ngIf="rCompany.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-2 d-md-none">Years Known</div>
-                                    <div class="col-sm-12 col-md-2"><input type="text " name="yearsKnown({{i}})" [(ngModel)]="references[i].yearsKnown" required id=" " #rYearsKnown="ngModel" class="form-control ">
+                                    <div class="col-sm-12 col-md-2"><input type="number" min=0 name="yearsKnown({{i}})" [(ngModel)]="references[i].yearsKnown" required id=" " #rYearsKnown="ngModel" class="form-control ">
                                         <mat-error *ngIf="rYearsKnown.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-2 d-md-none">Contact No.</div>
@@ -659,19 +663,19 @@
 
                                 <div class="row">
                                     <div class="col-sm-12 col-md-3 d-md-none">Expected Salary</div>
-                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="expectedSalary" [(ngModel)]="candidate.expectedSalary" #expectedSalary="ngModel" required>
+                                    <div class="col-sm-12 col-md-3"><input type="number" min=0 class="form-control input-sm" name="expectedSalary" [(ngModel)]="candidate.expectedSalary" #expectedSalary="ngModel" required>
                                         <mat-error *ngIf="expectedSalary.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-3 d-md-none">Current Salary</div>
-                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="currentSalary" [(ngModel)]="candidate.currentSalary" #currentSalary="ngModel" required>
+                                    <div class="col-sm-12 col-md-3"><input type="number" min=0 class="form-control input-sm" name="currentSalary" [(ngModel)]="candidate.currentSalary" #currentSalary="ngModel" required>
                                         <mat-error *ngIf="currentSalary.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-3 d-md-none">AWS / Variable Bonus</div>
-                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="bonus" [(ngModel)]="candidate.bonus" #bonus="ngModel" required>
+                                    <div class="col-sm-12 col-md-3"><input type="number" min=0 class="form-control input-sm" name="bonus" [(ngModel)]="candidate.bonus" #bonus="ngModel" required>
                                         <mat-error *ngIf="bonus.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-3 d-md-none">Allowance (Please specify)</div>
-                                    <div class="col-sm-12 col-md-3"><input type="text" class="form-control input-sm" name="allowance" [(ngModel)]="candidate.allowance" #allowance="ngModel" required>
+                                    <div class="col-sm-12 col-md-3"><input type="number" min=0 class="form-control input-sm" name="allowance" [(ngModel)]="candidate.allowance" #allowance="ngModel" required>
                                         <mat-error *ngIf="allowance.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                 </div>
@@ -681,12 +685,12 @@
                         <div class="container-fluid">
                             <!-- <table class="table "> -->
                                 <div class="row d-none d-md-flex">
-                                    <div class="col-md-6">Notice Period</div>
+                                    <div class="col-md-6">Notice Period( in months)</div>
                                     <div class="col-md-6">Earliest Available Date</div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 d-md-none">Notice Period</div>
-                                    <div class="col-sm-12 col-md-6"><input type="text" class="form-control input-sm" name="noticePeriod" [(ngModel)]="candidate.noticePeriod" #noticePeriod="ngModel" required>
+                                    <div class="col-sm-12 col-md-6"><input type="number" min=0 class="form-control input-sm" name="noticePeriod" [(ngModel)]="candidate.noticePeriod" #noticePeriod="ngModel" required>
                                         <mat-error *ngIf="noticePeriod.invalid && stepErrors">This field is required</mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-6 d-md-none">Earliest Available Date</div>
@@ -732,7 +736,10 @@
                                 <tr>
                                     <th>1</th>
                                     <td>Have you ever been convicted for any criminal offences in any criminal proceedings?
-                                        <div *ngIf="declaration1.value == 'true'"><input type="text" name="declaration1Reason" [(ngModel)]="candidate.declaration1Reason" required class="form-control" id="" #declarationReason="ngModel"></div>
+                                        <br> if 'yes' please give reason
+                                        <div *ngIf="declaration1.value == 'true'"><input type="text" name="declaration1Reason" [(ngModel)]="candidate.declaration1Reason" required class="form-control" id="" #declarationReason="ngModel">
+                                            <mat-error *ngIf="declarationReason.invalid && stepErrors">This field is required</mat-error>
+                                        </div>
                                         <mat-error *ngIf="declaration1.invalid && stepErrors">This field is required</mat-error>
                                         <!--                                         <mat-error *ngIf="declarationReason.invalid && (declarationReason.dirty || declarationReason.touched)">This field is required</mat-error>
  -->
@@ -752,7 +759,9 @@
                                     <th>2</th>
                                     <td>Have you ever suffered from mental breakdown/serious injury/physical defects? Do you have any serious illness/contagious disease?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration2.value == 'true'"><input type="text" name="declaration2Reason" [(ngModel)]="candidate.declaration2Reason" #declaration2Reason="ngModel" required class="form-control" id=""></div>
+                                        <div *ngIf="declaration2.value == 'true'"><input type="text" name="declaration2Reason" [(ngModel)]="candidate.declaration2Reason" #declaration2Reason="ngModel" required class="form-control" id="">
+                                            <mat-error *ngIf="declaration2Reason.invalid && stepErrors">This field is required</mat-error>
+                                        </div>
                                         <!-- <mat-error *ngIf="declaration2Reason.invalid && (declaration2Reason.dirty || declaration2Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration2.invalid && stepErrors">This field is required</mat-error>
                                     </td>
@@ -771,7 +780,10 @@
                                     <th>3</th>
                                     <td>Are you bankrupt or declared bankrupt?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration3.value == 'true'"><input type="text" name="declaration3Reason" [(ngModel)]="candidate.declaration3Reason" #declaration3Reason="ngModel" required class="form-control" id=""></div>
+                                        <div *ngIf="declaration3.value == 'true'"><input type="text" name="declaration3Reason" [(ngModel)]="candidate.declaration3Reason" #declaration3Reason="ngModel" required class="form-control" id="">
+                                            <mat-error *ngIf="declaration3Reason.invalid && stepErrors">This field is required</mat-error>
+
+                                        </div>
                                         <!-- <mat-error *ngIf="declaration3Reason.invalid && (declaration3Reason.dirty || declaration3Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration3.invalid && stepErrors">This field is required</mat-error>
                                     </td>
@@ -790,8 +802,11 @@
                                     <th>4</th>
                                     <td>Have you ever been dismissed or suspended from any position?
                                         <br> if 'yes' please give reason
-                                        <div *ngIf="declaration4.value == 'true'"><input type="text" name="declaration4Reason" [(ngModel)]="candidate.declaration4Reason" #declaration4Reason="ngModel" required class="form-control" id=""></div>
-                                        <!-- <mat-error *ngIf="declaration4Reason.invalid && (declaration4Reason.dirty || declaration4Reason.touched)">This field is required</mat-error> -->
+                                        <div *ngIf="declaration4.value == 'true'"><input type="text" name="declaration4Reason" [(ngModel)]="candidate.declaration4Reason" #declaration4Reason="ngModel" required class="form-control" id="">
+                                            <mat-error *ngIf="declaration4Reason.invalid && stepErrors">This field is required</mat-error>
+
+                                        </div>
+                                       <!-- <mat-error *ngIf="declaration4Reason.invalid && (declaration4Reason.dirty || declaration4Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration4.invalid && stepErrors">This field is required</mat-error>
                                     </td>
                                     <td>
@@ -809,7 +824,10 @@
                                     <th>5</th>
                                     <td>For Female applicants Only: Are you currently pregnant?
                                         <br> if 'yes' please state current trimester of pregnancy.
-                                        <div *ngIf="declaration5.value == 'true'"><input type="text" name="declaration5Reason" [(ngModel)]="candidate.declaration5Reason" #declaration5Reason="ngModel" required class="form-control" id=""></div>
+                                        <div *ngIf="declaration5.value == 'true'"><input type="text" name="declaration5Reason" [(ngModel)]="candidate.declaration5Reason" #declaration5Reason="ngModel" required class="form-control" id="">
+                                            <mat-error *ngIf="declaration5Reason.invalid && stepErrors">This field is required</mat-error>
+
+                                        </div>
                                         <!-- <mat-error *ngIf="declaration5Reason.invalid && (declaration5Reason.dirty || declaration5Reason.touched)">This field is required</mat-error> -->
                                         <mat-error *ngIf="declaration5.invalid && stepErrors">This field is required</mat-error>
                                     </td>
@@ -828,7 +846,9 @@
                                     <th>6</th>
                                     <td>Have you ever been employed by the company? (Singapore or overseas related companies)
                                         <br> if 'yes' please state your position and the department.
-                                        <div *ngIf="declaration6.value == 'true'"><input type="text" name="declaration6Reason" [(ngModel)]="candidate.declaration6Reason" #declaration6Reason="ngModel" required class="form-control" id=""></div>
+                                        <div *ngIf="declaration6.value == 'true'"><input type="text" name="declaration6Reason" [(ngModel)]="candidate.declaration6Reason" #declaration6Reason="ngModel" required class="form-control" id="">
+                                            <mat-error *ngIf="declaration6Reason.invalid && stepErrors">This field is required</mat-error>
+                                        </div>
                                         <mat-error *ngIf="declaration6.invalid && stepErrors">This field is required</mat-error>
                                         <!-- <mat-error *ngIf="declaration6Reason.invalid && (declaration6Reason.dirty || declaration6Reason.touched)">This field is required</mat-error> -->
                                     </td>
