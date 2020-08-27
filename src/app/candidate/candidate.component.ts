@@ -6,6 +6,7 @@ import { GeneralService } from '../general.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 
+
 @Component({
   selector: 'app-candidate',
   templateUrl: './candidate.component.html',
@@ -302,6 +303,8 @@ export class CandidateComponent implements OnInit {
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
        this.onSubmitForm();
+       
+       
       }
     });
   }

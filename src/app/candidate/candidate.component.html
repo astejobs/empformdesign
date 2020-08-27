@@ -110,7 +110,7 @@
                                             <input type="file" #fileInput name="image" [(ngModel)]="image" required (change)="fileProgress($event)" class="form-control d-none" accept="image/*" />
                                         </div>
                                         <img [src]="previewUrl" alt="Photo " (click)="fileInput.click()" class="img-responsive img-thumbnail " id="pic_photo " style="cursor: pointer;width:200px " />
-                                        <mat-error *ngIf="fileInput.invalid && stepErrors">This field is required</mat-error>
+                                  <br> <mat-error *ngIf="stepErrors">Upload Image</mat-error> 
                                     </div>
                                 </div>
 
@@ -130,7 +130,7 @@
                                                 <input class="form-check-input " type="radio" name="gender" [(ngModel)]="personalDetails.gender" required id="female" #pdGender="ngModel" value="female">
                                                 <label class="form-check-label " for="female">Female</label>
                                             </div>
-                                            <mat-error *ngIf="pdGender.invalid && stepErrors">This field is required</mat-error>
+                                           <br> <mat-error *ngIf="pdGender.invalid && stepErrors">Select Gender</mat-error>
 
                                     </div>
                                     <div class="col-sm-12 col-md-5">
@@ -151,7 +151,7 @@
                                                 <input class="form-check-input " type="radio" name="maritalStatus" [(ngModel)]="personalDetails.maritalStatus" required value="widowed" #pdstatus="ngModel">
                                                 <label class="form-check-label " for="widowed ">Widowed</label>
                                             </div>
-                                            <mat-error *ngIf="pdstatus.invalid && stepErrors">This field is required</mat-error>
+                                           <br> <mat-error *ngIf="pdstatus.invalid && stepErrors">Select Marital Status</mat-error>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -203,7 +203,8 @@
                                     </div>
                                     <div class="col-sm-12 col-md-4">Email Address<span class="text-danger">*</span>
                                         <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-zA-Z]{2,4}" style="text-transform: lowercase" name="email" #pdEmail="ngModel" [(ngModel)]="personalDetails.email" required id="mail " class="form-control ">
-                                        <mat-error *ngIf="pdEmail.invalid && stepErrors">This field is required</mat-error>
+                                        <mat-error *ngIf="pdEmail.invalid  && stepErrors" >Enter valid email</mat-error>
+
                                     </div>
                                 </div>
                                 <div class="row">
@@ -233,15 +234,15 @@
                                     <div class="col-sm-12 col-md-4">Contact No:<span class="text-danger">*</span>
                                    <!--  <td>Mobile -->
                                         <input type="number " name="mobileContact" [(ngModel)]="personalDetails.mobileContact" pattern="\d{8}" required id="address1 " #pdMobileContact="ngModel" class="form-control " placeholder="Personal Contact">
-                                        <mat-error *ngIf="pdMobileContact.invalid && stepErrors">Personal Contact is required</mat-error>
+                                        <mat-error *ngIf="pdMobileContact.invalid && stepErrors"> Enter valid Personal Contact </mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-4"><br>
                                         <input type="number " name="homeContact" [(ngModel)]="personalDetails.homeContact" pattern="\d{8}" required id="address1 " #pdHomeContact="ngModel" class="form-control " placeholder="Home Contact">
-                                        <mat-error *ngIf="pdHomeContact.invalid && stepErrors">Home Contact field is required</mat-error>
+                                        <mat-error *ngIf="pdHomeContact.invalid && stepErrors"> Enter valid Home Contact </mat-error>
                                     </div>
                                     <div class="col-sm-12 col-md-4"><br>
                                         <input type="number " name="officeContact" [(ngModel)]="personalDetails.officeContact" pattern="\d{8}" required id="address1 " #pdOfficeContact="ngModel" class="form-control " placeholder="Office Contact">
-                                        <mat-error *ngIf="pdOfficeContact.invalid && stepErrors">Office Contact field is required</mat-error>
+                                        <mat-error *ngIf="pdOfficeContact.invalid && stepErrors"> Enter valid Office Contact </mat-error>
                                     </div>
                                 </div>
                             <!-- </table> -->
@@ -373,12 +374,12 @@
                         <div class="container-fluid ">
                             <div  id="historyTable ">
                                 <div class="row d-none d-md-flex">
-                                    <div class="col-md-2">From<br>(mm/yy)<span class="text-danger">*</span></div>
-                                    <div class="col-md-2">To<br>(mm/yy)<span class="text-danger">*</span></div>
-                                    <div class="col-md-2">Name of Employer<br>Address of Employer<span class="text-danger">*</span></div>
-                                    <div class="col-md-2">Last Drawn Basic Salary/<br>Allowance / Bonus<span class="text-danger">*</span></div>
-                                    <div class="col-md-2">Job Title<br>Brief Job Description<span class="text-danger">*</span></div>
-                                    <div class="col-md-2">Reason for Leaving<span class="text-danger">*</span><br></div>
+                                    <div class="col-md-2"><h4>From (mm/yy)<span class="text-danger">*</span></h4></div>
+                                    <div class="col-md-2"><h4>To (mm/yy)<span class="text-danger">*</span></h4></div>
+                                    <div class="col-md-2"><h4>Name of Employer /Address of Employer<span class="text-danger">*</span></h4></div>
+                                    <div class="col-md-2"><h4>Last Drawn Basic Salary/Allowance / Bonus<span class="text-danger">*</span></h4></div>
+                                    <div class="col-md-2"><h4>Job Title/Brief Job Description<span class="text-danger">*</span></h4></div>
+                                    <div class="col-md-2"><h4>Reason for Leaving<span class="text-danger">*</span></h4><br></div>
                                 </div>
                                <!--  <div class="row d-none d-md-flex">
                                     <div class="col-md-2">(mm/yy)</div>
