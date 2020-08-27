@@ -5,6 +5,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 import { GeneralService } from '../general.service';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import Swal from 'sweetalert2'
 
 
 @Component({
@@ -129,8 +130,10 @@ export class CandidateComponent implements OnInit {
               this.generalService.saveImage(img).subscribe((response:any)=>{
                   
               });
+              Swal.fire('Welcome', 'Data saved successfully', 'success');
               this.showMessage('Data saved successfully')
             }else{
+              Swal.fire('oops', 'Data was not saved successfully', 'error')
               this.showErrorMessage('Something went wrong.Please try again')
             }
       });
